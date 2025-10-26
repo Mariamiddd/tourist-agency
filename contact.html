@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Odyssey Travel</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+
+  <header>
+    <h1><img src="images/favicon.png" alt="page-icon">Odyssey Travel</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a class="active" href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="contact">
+    <section class="contact-form-section">
+      <form class="contact-form">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+        <label for="phone">Mobile Number</label>
+        <input type="tel" id="phone" pattern="[0-9+\s()-]{7,15}" name="phone" placeholder="Enter your Phone Number">
+
+        <label for="tour">Choose Tour</label>
+        <select id="tour" name="tour">
+          <option value="">Select a tour</option>
+          <option value="thessaloniki">Thessaloniki</option>
+          <option value="athens">Athens</option>
+          <option value="santorini">Santorini</option>
+          <option value="mykonos">Mykonos</option>
+          <option value="lefkada">Lefkada</option>
+        </select>
+
+        <label for="message">Message (Optional)</label>
+        <textarea id="message" name="message" rows="5" placeholder="Write your message here..."></textarea>
+
+        <button class="contact-btn" type="submit">Send Message</button>
+      </form>
+      <div class="contact-info">
+        <p>Contact Us<br>
+          12 Monastiraki Street, Athens, Greece<br>
+          📞 +30 333 333 3333<br>
+          ✉️ odysseytravel@gmail.com</p>
+      </div>
+    </section>
+
+
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Odyssey Travel. All rights reserved.</p>
+  </footer>
+</body>
+
+</html>
