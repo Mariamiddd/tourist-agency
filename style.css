@@ -107,15 +107,6 @@ nav a:hover {
 }
 
 
-.main-header {
-  font-size: 5rem;
-}
-
-.slogan {
-  font-size: 3rem;
-  margin-top: 1rem;
-}
-
 .services {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -350,6 +341,33 @@ footer {
   box-shadow: 1px 1px 10px var(--shadow);
 }
 
+/* animation on header */
+@keyframes appearSlowly {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.main-header {
+  font-size: 5rem;
+  animation: appearSlowly 1.5s ease-in-out;
+}
+
+.slogan {
+  font-size: 3rem;
+  margin-top: 1rem;
+  animation: appearSlowly 1.5s ease-out;
+  animation-delay: 0.5s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
 /* contact page */
 .contact-form-section {
   display: flex;
@@ -458,7 +476,7 @@ footer {
 
 }
 
-/* Tablet screens (≤ 768px) */
+/* mobile screens (≤ 768px) */
 @media (max-width: 768px) {
   html {
     font-size: 8px;
@@ -503,7 +521,7 @@ footer {
   .destination-grid {
     display: grid;
     grid-template-columns: 1fr;
-    margin: 50px;
+    margin: 10px;
 
   }
 
@@ -513,7 +531,6 @@ footer {
   .des4,
   .des5 {
     grid-column: 1/2;
-
   }
 
   .des1 {
@@ -541,5 +558,3 @@ footer {
   }
 
 }
-
-
