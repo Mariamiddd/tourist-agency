@@ -574,4 +574,9 @@ footer {
     font-size: 1.2rem;
   }
 
+  body {
+    padding-bottom: 60px;
+  }
+
+
 }
