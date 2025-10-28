@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Destinations - Odyssey Travel</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <h1><img src="images/favicon.png" alt="page-icon">Odyssey Travel</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a class="active" href="contact.html">Contact</a>
+      <a href="destination.html">Destinations</a>
+    </nav>
+  </header>
+
+
+  <main class="destinations-page">
+    <!-- HERO SECTION -->
+    <section class="destination-hero">
+      <div class="hero-text">
+        <h1>Explore Greece — One Island at a Time</h1>
+        <p>Where every wave tells a story and every sunset feels eternal. Discover the islands that shaped legends.</p>
+      </div>
+      <video autoplay muted loop class="hero-video">
+        <source src="videos/greece.mp4" type="video/mp4">
+        Your browser does not support video.
+      </video>
+    </section>
+
+   <section class="map-gallery">
+  <h2>Explore the Greek Isles</h2>
+  <p>Scroll through our favorite destinations and discover your next adventure.</p>
+
+  <div class="carousel">
+    <div class="carousel-track">
+      <div class="card"><img src="images/santorini.jpg" alt="Santorini"><h3>Santorini</h3></div>
+      <div class="card"><img src="images/lefkada.jpg" alt="Crete"><h3>Crete</h3></div>
+      <div class="card"><img src="images/acropolis.jpg" alt="Rhodes"><h3>Rhodes</h3></div>
+      <div class="card"><img src="images/mykonos.jpg" alt="Mykonos"><h3>Mykonos</h3></div>
+      <div class="card"><img src="images/thessaloniki.jpg" alt="Zakynthos"><h3>Zakynthos</h3></div>
+
+      <!-- duplicate for infinite loop -->
+      <div class="card"><img src="images/santorini.jpg" alt="Santorini"><h3>Santorini</h3></div>
+      <div class="card"><img src="images/lefkada.jpg" alt="Crete"><h3>Crete</h3></div>
+      <div class="card"><img src="images/acropolis.jpg" alt="Rhodes"><h3>Rhodes</h3></div>
+      <div class="card"><img src="images/mykonos.jpg" alt="Mykonos"><h3>Mykonos</h3></div>
+      <div class="card"><img src="images/thessaloniki.jpg" alt="Zakynthos"><h3>Zakynthos</h3></div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- FEATURED DESTINATION SECTIONS -->
+    <section class="featured-destination santorini">
+      <div class="text">
+        <h2>Santorini</h2>
+        <p>Famed for its whitewashed houses and blue-domed roofs, Santorini is a breathtaking blend of volcanic landscapes and serene beauty. Wander Oia’s alleys, explore ancient Akrotiri, and taste wines grown in volcanic soil.</p>
+        <ul>
+          <li>🌅 Sunset view in Oia</li>
+          <li>🍷 Wine tasting in Pyrgos</li>
+          <li>🏖️ Red Beach & Kamari Beach</li>
+        </ul>
+        <a href="contact.html" class="contact-btn">Plan a Santorini Trip</a>
+      </div>
+      <div class="images">
+        <img src="images/santorini2.jpg" alt="Santorini view">
+      </div>
+    </section>
+
+    <section class="featured-destination athens">
+      <div class="text">
+        <h2>Athens</h2>
+        <p>Step into history where democracy was born. From the Acropolis to Plaka’s narrow lanes, Athens blends myth and modernity in every street corner.</p>
+        <ul>
+          <li>🏛️ Visit the Acropolis and Parthenon</li>
+          <li>🥙 Taste authentic Greek souvlaki</li>
+          <li>🎭 Discover ancient theatres</li>
+        </ul>
+        <a href="contact.html" class="contact-btn">Book Your Athens Experience</a>
+      </div>
+      <div class="images">
+        <img src="images/acropolis.jpg" alt="Athens acropolis">
+      </div>
+    </section>
+
+    <!-- TRAVELER EXPERIENCE SECTION -->
+    <section class="reviews">
+      <h2>Traveler Experiences</h2>
+      <div class="review-grid">
+        <blockquote>
+          “Odyssey Travel planned our honeymoon to Santorini — every moment was magical! They even surprised us with a private sunset dinner.”  
+          <span>– Eleni & Marco</span>
+        </blockquote>
+        <blockquote>
+          “The guides in Athens were so passionate and knowledgeable. It felt like walking through history itself.”  
+          <span>– Sophia, UK</span>
+        </blockquote>
+        <blockquote>
+          “We explored Lefkada’s hidden beaches and met incredible locals. I can’t wait to go back!”  
+          <span>– Alex, USA</span>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- CALL TO ACTION -->
+    <section class="plan-journey">
+      <h2>Ready to Begin Your Odyssey?</h2>
+      <p>Let us design a tailor-made journey through Greece that you’ll remember forever.</p>
+      <a href="contact.html" class="contact-btn">Start Planning</a>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Odyssey Travel. All rights reserved.</p>
+  </footer>
+</body>
+</html>
