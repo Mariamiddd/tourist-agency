@@ -746,11 +746,6 @@ footer {
   margin-bottom: 0.5rem;
 }
 
-.scroll-gallery p {
-  color: #5a4631;
-  margin-bottom: 3rem;
-}
-
 .featured-destination {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -854,7 +849,7 @@ footer {
   max-width: 1200px;
   margin: 0 auto;
   overflow: hidden;
-  border-radius: 20px;
+  border-radius: 15px;
 }
 
 .mySlides {
@@ -866,7 +861,6 @@ footer {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 20px;
   object-fit: cover;
 }
 
@@ -919,8 +913,9 @@ footer {
 .caption-container {
   text-align: center;
   background-color: #222;
-  padding: 2px 16px;
-  color: white;
+  padding: 20px 16px;
+  color: var(--bg-light);
+  font-size: 1.5rem;
 }
 
 .row:after {
