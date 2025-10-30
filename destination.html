@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Destinations - Odyssey Travel</title>
   <link rel="stylesheet" href="style.css">
   <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -16,8 +14,9 @@
     <h1><img src="images/favicon.png" alt="page-icon">Odyssey Travel</h1>
     <nav>
       <a href="index.html">Home</a>
-      <a class="active" href="contact.html">Contact</a>
-      <a href="destination.html">Destinations</a>
+      <a href="services.html">Services</a>
+      <a class="active" href="destination.html">Destinations</a>
+      <a href="contact.html">Contact</a>
     </nav>
   </header>
 
@@ -30,39 +29,76 @@
         <p>Where every wave tells a story and every sunset feels eternal. Discover the islands that shaped legends.</p>
       </div>
       <video autoplay muted loop class="hero-video">
-        <source src="videos/greece.mp4" type="video/mp4">
-        Your browser does not support video.
+        <source src="images/video.mp4" type="video/mp4">
       </video>
     </section>
 
-   <section class="map-gallery">
-  <h2>Explore the Greek Isles</h2>
-  <p>Scroll through our favorite destinations and discover your next adventure.</p>
+    <section class="scroll-gallery">
+      <h2>Explore the Greek Isles</h2>
+      <p>Scroll through our favorite destinations and discover your next adventure.</p>
 
-  <div class="carousel">
-    <div class="carousel-track">
-      <div class="card"><img src="images/santorini.jpg" alt="Santorini"><h3>Santorini</h3></div>
-      <div class="card"><img src="images/lefkada.jpg" alt="Crete"><h3>Crete</h3></div>
-      <div class="card"><img src="images/acropolis.jpg" alt="Rhodes"><h3>Rhodes</h3></div>
-      <div class="card"><img src="images/mykonos.jpg" alt="Mykonos"><h3>Mykonos</h3></div>
-      <div class="card"><img src="images/thessaloniki.jpg" alt="Zakynthos"><h3>Zakynthos</h3></div>
+      <div class="container-gallery">
+        <div class="slider-wrapper">
+        <div class="mySlides">
+          <div class="numberText">1/5</div>
+          <img src="images/santorinides.jpg" alt="Santorini">
+        </div>
+        <div class="mySlides">
+          <div class="numberText">2/5</div>
+          <img src="images/lefkadades.jpg" alt="lefkada">
+        </div>
+        <div class="mySlides">
+          <div class="numberText">3/5</div>
+          <img src="images/athensdes.jpg" alt="athens">
+        </div>
+        <div class="mySlides">
+          <div class="numberText">4/5</div>
+          <img src="images/mykonosdes.jpg" alt="Mykonos">
+        </div>
+        <div class="mySlides">
+          <div class="numberText">5/5</div>
+          <img src="images/thessalonikides.jpg" alt="thessaloniki">
+        </div>
 
-      <!-- duplicate for infinite loop -->
-      <div class="card"><img src="images/santorini.jpg" alt="Santorini"><h3>Santorini</h3></div>
-      <div class="card"><img src="images/lefkada.jpg" alt="Crete"><h3>Crete</h3></div>
-      <div class="card"><img src="images/acropolis.jpg" alt="Rhodes"><h3>Rhodes</h3></div>
-      <div class="card"><img src="images/mykonos.jpg" alt="Mykonos"><h3>Mykonos</h3></div>
-      <div class="card"><img src="images/thessaloniki.jpg" alt="Zakynthos"><h3>Zakynthos</h3></div>
-    </div>
-  </div>
-</section>
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
+        <a class="next" onclick="plusSlides(1)">❯</a>
+        <div class="caption-container">
+          <p id="caption"></p>
+        </div>
+
+        <div class="row">
+          <div class="column">
+            <img class="demo cursor" src="images/santorinides.jpg" style="width:100%" onclick="currentSlide(1)"
+              alt="Santorini">
+          </div>
+          <div class="column">
+            <img class="demo cursor" src="images/lefkadades.jpg" style="width:100%" onclick="currentSlide(2)"
+              alt="Lefkada">
+          </div>
+          <div class="column">
+            <img class="demo cursor" src="images/athensdes.jpg" style="width:100%" onclick="currentSlide(3)"
+              alt="Athens">
+          </div>
+          <div class="column">
+            <img class="demo cursor" src="images/mykonosdes.jpg" style="width:100%" onclick="currentSlide(4)"
+              alt="Mykonos">
+          </div>
+          <div class="column">
+            <img class="demo cursor" src="images/thessalonikides.jpg" style="width:100%" onclick="currentSlide(5)"
+              alt="Thessaloniki">
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
 
 
-    <!-- FEATURED DESTINATION SECTIONS -->
     <section class="featured-destination santorini">
       <div class="text">
         <h2>Santorini</h2>
-        <p>Famed for its whitewashed houses and blue-domed roofs, Santorini is a breathtaking blend of volcanic landscapes and serene beauty. Wander Oia’s alleys, explore ancient Akrotiri, and taste wines grown in volcanic soil.</p>
+        <p>Famed for its whitewashed houses and blue-domed roofs, Santorini is a breathtaking blend of volcanic
+          landscapes and serene beauty. Wander Oia’s alleys, explore ancient Akrotiri, and taste wines grown in volcanic
+          soil.</p>
         <ul>
           <li>🌅 Sunset view in Oia</li>
           <li>🍷 Wine tasting in Pyrgos</li>
@@ -71,14 +107,15 @@
         <a href="contact.html" class="contact-btn">Plan a Santorini Trip</a>
       </div>
       <div class="images">
-        <img src="images/santorini2.jpg" alt="Santorini view">
+        <img src="images/santorinides.jpg" alt="Santorini view">
       </div>
     </section>
 
     <section class="featured-destination athens">
       <div class="text">
         <h2>Athens</h2>
-        <p>Step into history where democracy was born. From the Acropolis to Plaka’s narrow lanes, Athens blends myth and modernity in every street corner.</p>
+        <p>Step into history where democracy was born. From the Acropolis to Plaka’s narrow lanes, Athens blends myth
+          and modernity in every street corner.</p>
         <ul>
           <li>🏛️ Visit the Acropolis and Parthenon</li>
           <li>🥙 Taste authentic Greek souvlaki</li>
@@ -87,30 +124,82 @@
         <a href="contact.html" class="contact-btn">Book Your Athens Experience</a>
       </div>
       <div class="images">
-        <img src="images/acropolis.jpg" alt="Athens acropolis">
+        <img src="images/athensdes.jpg" alt="Athens acropolis">
       </div>
     </section>
 
-    <!-- TRAVELER EXPERIENCE SECTION -->
+    <section class="featured-destination lefkada">
+      <div class="text">
+        <h2>Lefkada</h2>
+        <p>Connected to the mainland by a causeway, Lefkada boasts some of Greece's most stunning beaches with
+          turquoise waters and dramatic cliffs. Explore Porto Katsiki, Egremni, and the charming villages nestled in the
+          island's hills.</p>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+        <a href="contact.html" class="contact-btn">lefkada</a>
+      </div>
+      <div class="images">
+        <img src="images/lefkadades.jpg" alt="lefkada beach">
+      </div>
+    </section>
+
+    <section class="featured-destination mykonos">
+      <div class="text">
+        <h2>Mykonos</h2>
+        <p>Experience the glamorous side of the Greek islands with chic beach clubs, designer boutiques in winding
+          alleys, and vibrant nightlife. Beyond the party scene, discover tranquil beaches and traditional villages that
+          showcase Mykonos' authentic charm.</p>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+        <a href="contact.html" class="contact-btn">Book Your Mykonos Experience</a>
+      </div>
+      <div class="images">
+        <img src="images/mykonosdes.jpg" alt="mykonos view">
+      </div>
+    </section>
+    <section class="featured-destination thessaloniki">
+      <div class="text">
+        <h2>Thessaloniki</h2>
+        <p>Greece's second city, Thessaloniki, is a vibrant blend of history, culture, and culinary delights. Stroll
+          along the waterfront promenade, explore Byzantine walls, and savor the city's renowned gastronomy in bustling
+          markets and tavernas.</p>
+        <ul>
+          <li>fill</li>
+          <li>fill</li>
+          <li>fill</li>
+        </ul>
+        <a href="contact.html" class="contact-btn">Book Your Thessaloniki Experience</a>
+      </div>
+      <div class="images">
+        <img src="images/thessalonikides.jpg" alt="Thessaloniki city view">
+      </div>
+    </section>
+
     <section class="reviews">
       <h2>Traveler Experiences</h2>
       <div class="review-grid">
         <blockquote>
-          “Odyssey Travel planned our honeymoon to Santorini — every moment was magical! They even surprised us with a private sunset dinner.”  
+          “Odyssey Travel planned our honeymoon to Santorini — every moment was magical! They even surprised us with a
+          private sunset dinner.”
           <span>– Eleni & Marco</span>
         </blockquote>
         <blockquote>
-          “The guides in Athens were so passionate and knowledgeable. It felt like walking through history itself.”  
+          “The guides in Athens were so passionate and knowledgeable. It felt like walking through history itself.”
           <span>– Sophia, UK</span>
         </blockquote>
         <blockquote>
-          “We explored Lefkada’s hidden beaches and met incredible locals. I can’t wait to go back!”  
+          “We explored Lefkada’s hidden beaches and met incredible locals. I can’t wait to go back!”
           <span>– Alex, USA</span>
         </blockquote>
       </div>
     </section>
 
-    <!-- CALL TO ACTION -->
     <section class="plan-journey">
       <h2>Ready to Begin Your Odyssey?</h2>
       <p>Let us design a tailor-made journey through Greece that you’ll remember forever.</p>
@@ -122,5 +211,7 @@
   <footer>
     <p>&copy; 2025 Odyssey Travel. All rights reserved.</p>
   </footer>
+  <script src="script.js"></script>
 </body>
+
 </html>
