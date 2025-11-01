@@ -1123,13 +1123,12 @@ footer {
   nav.toggle {
     display: flex !important;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 2.3rem;
     background-color: var(--bg-light);
     position: absolute;
     top: 80px;
     left:0;
     width: 80%;
-    height: 100vh;
     padding: 2rem 1.5rem;
     border-radius: 8px;
     box-shadow: 0 8px 20px var(--shadow);
