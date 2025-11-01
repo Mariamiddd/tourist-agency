@@ -70,6 +70,8 @@ header h1 {
   display: flex;
   align-items: center;
   gap: 10px;
+  color: var(--text-dark);
+
 }
 
 header img {
@@ -1119,41 +1121,41 @@ footer {
   }
 
   nav.toggle {
-  display: flex !important;
-  flex-direction: column;
-  gap: 1.5rem;
-  background-color: var(--bg-light);
-  position: absolute;
-  top: 70px;
-  right: 10px;
-  padding: 2rem 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 8px 20px var(--shadow);
-  z-index: 1000;
-  animation: slideDown 0.3s ease;
-  min-width: 200px;
-}
+    display: flex !important;
+    flex-direction: column;
+    gap: 1.5rem;
+    background-color: var(--bg-light);
+    position: absolute;
+    top: 70px;
+    right: 10px;
+    padding: 2rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px var(--shadow);
+    z-index: 1000;
+    animation: slideDown 0.3s ease;
+    min-width: 200px;
+  }
 
-nav a {
-  padding: 1.2rem;
-  text-align: center;
-  font-size: 2.2rem;
-  border-radius: 6px;
-  transition: all 0.2s ease;
-  display: block;
-  font-weight: 700;
-}
+  nav a {
+    padding: 1.2rem;
+    text-align: center;
+    font-size: 2.2rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    display: block;
+    font-weight: 700;
+  }
 
-nav a:hover {
-  background-color: var(--bg-medium);
-  color: white;
-  transform: translateX(5px);
-}
+  nav a:hover {
+    background-color: var(--bg-medium);
+    color: white;
+    transform: translateX(5px);
+  }
 
-nav a.active {
-  background-color: var(--bg-darkBlue);
-  color: white;
-}
+  nav a.active {
+    background-color: var(--bg-darkBlue);
+    color: white;
+  }
 
 
 
