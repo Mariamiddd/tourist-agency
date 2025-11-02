@@ -1112,9 +1112,19 @@ footer {
 
 
   nav {
-    display: none;
-    gap: 1rem;
-    transition: all 0.3s ease;
+        flex-direction: column;
+        gap: 70px;
+        padding: 100px;
+        position: fixed;
+        z-index: 1;
+        width: 78%;
+        height: 100vh;
+        top: 0;
+        left: -700px;
+        transition: left 0.5s ease;
+        z-index: 1000;
+        background: linear-gradient(to right, #3d72b4, #525252);
+
   }
 
   @keyframes slideDown {
@@ -1130,43 +1140,23 @@ footer {
   }
 
   nav.toggle {
-    display: flex !important;
-    flex-direction: column;
-    gap: 2.3rem;
-    background-color: var(--bg-light);
-    position: absolute;
-    top: 80px;
-    left: 0;
-    width: 80%;
-    padding: 2rem 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 8px 20px var(--shadow);
-    z-index: 1000;
-    transition: 1s;
+           left: 0;
+
   }
 
   nav a {
-    padding: 1.2rem;
+    padding: 1rem;
     text-align: center;
-    font-size: 2.2rem;
+    font-size: 2.3rem;
     border-radius: 6px;
     transition: all 0.2s ease;
     display: block;
     font-weight: 700;
   }
 
-  nav a:hover {
-    background-color: var(--bg-medium);
-    color: white;
-    transform: translateX(5px);
-  }
-
-  nav a.active {
-    background-color: var(--bg-darkBlue);
-    color: white;
-  }
-
-
+nav a.active{
+  color: var(--bg-yellow);
+}
 
   .main-header {
     font-size: 4rem;
