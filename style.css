@@ -83,6 +83,8 @@ nav {
   display: flex;
   gap: 2rem;
   text-transform: uppercase;
+  z-index: 10000;
+
 }
 
 nav a {
@@ -1120,10 +1122,11 @@ footer {
         width: 78%;
         height: 100vh;
         top: 0;
-        left: -700px;
+        left: -100%;
         transition: left 0.5s ease;
         z-index: 1000;
         background: linear-gradient(to right, #3d72b4, #525252);
+
 
   }
 
