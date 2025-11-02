@@ -326,6 +326,7 @@ nav a.active {
   z-index: 2;
   text-align: center;
   width: 100%;
+  text-transform: uppercase;
 }
 
 .destination-card span {
@@ -339,6 +340,7 @@ nav a.active {
   margin-bottom: 0.3rem;
   text-shadow: 1px 1px var(--shadow);
   background: rgba(44, 24, 16, 0.9);
+  text-transform: none;
 }
 
 .destination-card:hover>h3 {
@@ -412,15 +414,16 @@ footer {
   justify-content: center;
   background: linear-gradient(to right, #3d72b4, #525252);
   color: var(--bg-light);
-  position: fixed;
+  position: static;
   bottom: 0;
   left: 0;
+  margin-top: 20px;
   z-index: 11;
   padding: 1rem;
   width: 100%;
-  margin-top: 30px;
   box-shadow: 1px 1px 10px var(--shadow);
 }
+
 
 /* animation on header */
 @keyframes appearSlowly {
@@ -674,7 +677,7 @@ footer {
 
 .hero-text {
   position: relative;
-  color: var(--bg-yellow);
+  color: var(--text-darker);
   padding: 20% 0;
   z-index: 2;
   text-shadow: 2px 2px 4px var(--shadow);
@@ -687,7 +690,8 @@ footer {
 }
 
 .hero-text p {
-  font-size: 1.1rem;
+  font-weight: bolder;
+  font-size: 1.3rem;
 }
 
 .scroll-gallery {
@@ -960,6 +964,11 @@ footer {
   outline: none;
 }
 
+.btn-contact{
+  align-self: center;
+  background-color: var(--bg-darkBlue);
+}
+
 .service-content,
 .destination-card,
 .additional-card,
@@ -1127,7 +1136,7 @@ footer {
     background-color: var(--bg-light);
     position: absolute;
     top: 80px;
-    left:0;
+    left: 0;
     width: 80%;
     padding: 2rem 1.5rem;
     border-radius: 8px;
@@ -1280,5 +1289,8 @@ footer {
 
   .additional-grid {
     grid-template-columns: 1fr;
+  }
+  .contact-info{
+    font-size: 1rem;
   }
 }
