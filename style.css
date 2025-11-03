@@ -13,7 +13,7 @@
 }
 
 @font-face {
-  font-family: 'Lato-Bold';
+  font-family: 'Lato';
   src: url(fonts/Lato-Bold.ttf) format('truetype');
 }
 
@@ -45,8 +45,9 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  color: var(--text-main);
+  color: var(--bg-light);
   background: linear-gradient(to right, #3d72b4, #525252);
+  margin-bottom: 100px;
 }
 
 header {
@@ -175,7 +176,7 @@ nav a.active {
   }
 }
 
-/* horizontal sailing motion across screen */
+/* sailing motion */
 @keyframes sail {
   0% {
     left: -150px;
@@ -416,7 +417,7 @@ footer {
   justify-content: center;
   background: linear-gradient(to right, #3d72b4, #525252);
   color: var(--bg-light);
-  position: static;
+  position: fixed;
   bottom: 0;
   left: 0;
   margin-top: 20px;
@@ -555,7 +556,7 @@ footer {
 .service-content h3 {
   font-size: 2.2rem;
   font-family: "Cormorant Garamond", serif;
-  color: var(--bg-darkest);
+  color: var(--text-darker);
   margin-bottom: 1rem;
 }
 
@@ -583,7 +584,7 @@ footer {
   content: "✓";
   position: absolute;
   left: 0;
-  color: var(--bg-darkest);
+  color: var(--text-darker);
   font-weight: bold;
   font-size: 1.4rem;
 }
@@ -625,7 +626,7 @@ footer {
 .additional-card h4 {
   font-size: 1.8rem;
   font-family: "Cormorant Garamond", serif;
-  color: var(--bg-darkest);
+  color: var(--text-darker);
   margin-bottom: 1rem;
 }
 
@@ -636,7 +637,7 @@ footer {
 }
 
 .services-cta {
-  background: linear-gradient(135deg, var(--bg-darkest), var(--bg-dark));
+  background: linear-gradient(135deg, var(--text-darker), var(--bg-dark));
   padding: 6rem 2rem;
   text-align: center;
   color: white;
@@ -745,6 +746,7 @@ footer {
 .featured-destination ul {
   list-style: none;
   margin-bottom: 1.5rem;
+  color: var(--text-dark);
 }
 
 .featured-destination li {
@@ -962,11 +964,11 @@ footer {
 .contact-form input[type="email"]:focus,
 .contact-form textarea:focus,
 .contact-form select:focus {
-  border: 2px solid var(--bg-darkest);
+  border: 2px solid var(--text-darker);
   outline: none;
 }
 
-.btn-contact{
+.btn-contact {
   align-self: center;
   background-color: var(--bg-darkBlue);
 }
@@ -986,8 +988,12 @@ footer {
     font-size: 10px;
   }
 
-  body {
-    margin-bottom: 100px;
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .hero-text p {
+    font-size: 1rem;
   }
 
   .services>.div2,
@@ -1114,17 +1120,17 @@ footer {
 
 
   nav {
-        flex-direction: column;
-        gap: 50px;
-        position: fixed;
-        z-index: 1;
-        height: 100vh;
-        top: 0;
-        left: -100%;
-        transition: left 0.5s ease;
-        z-index: 1000;
-        background: linear-gradient(to right, #3d72b4, #525252);
-        padding: 40px;
+    flex-direction: column;
+    gap: 50px;
+    position: fixed;
+    z-index: 1;
+    height: 100vh;
+    top: 0;
+    left: -100%;
+    transition: left 0.5s ease;
+    z-index: 1000;
+    background: linear-gradient(to right, #3d72b4, #525252);
+    padding: 40px;
 
 
   }
@@ -1142,7 +1148,7 @@ footer {
   }
 
   nav.toggle {
-           left: 0;
+    left: 0;
 
   }
 
@@ -1156,9 +1162,9 @@ footer {
     font-weight: 700;
   }
 
-nav a.active{
-  color: var(--bg-yellow);
-}
+  nav a.active {
+    color: var(--bg-yellow);
+  }
 
   .main-header {
     font-size: 4rem;
@@ -1282,7 +1288,8 @@ nav a.active{
   .additional-grid {
     grid-template-columns: 1fr;
   }
-  .contact-info{
+
+  .contact-info {
     font-size: 1rem;
   }
 }

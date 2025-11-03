@@ -1,4 +1,4 @@
-const hamburger = document.getElementsByClassName('hamburger')[0];
+const hamburger = document.querySelector('.hamburger');
 const nav = document.querySelector('nav');
 
 hamburger.addEventListener('click', () => {
