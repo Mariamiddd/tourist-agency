@@ -6,13 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Odyssey Travel</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="shortcut icon" href="images/favicon.webp" type="image/x-icon">
+  <link rel="icon" href="images/favicon.webp" type="image/webp">
+  <link rel="icon" href="images/favicon.png" type="image/png">
 </head>
 
 <body>
   <header>
     <a href="index.html">
-      <h1><img src="images/favicon.webp" alt="page-icon">Odyssey Travel</h1>
+      <h1>
+        <picture>
+          <source srcset="images/favicon.webp" type="image/webp">
+          <img src="images/favicon.png" alt="Oddysey Travel Logo" loading="lazy">
+        </picture>Odyssey Travel
+      </h1>
     </a>
     <nav>
       <a class="active" href="index.html">Home</a>
@@ -29,12 +35,20 @@
       <h1 class="main-header">Odyssey Travel</h1>
       <p class="slogan">Every Journey is your Odyssey</p>
       <div class="ship-wrapper">
-        <img class="ship" src="images/cruise.webp" alt="Animated sailing ship illustration">
+        <picture>
+          <source srcset="images/cruise.webp" type="image/webp">
+          <img src="images/cruise.png" alt="sailing ship icon" loading="lazy">
+        </picture>
       </div>
     </section>
 
     <section class="services">
-      <div class="div1"><img src="images/santoriniServices.webp" alt="santorini view"></div>
+      <div class="div1">
+        <picture>
+          <source srcset="images/santoriniServices.webp" type="image/webp">
+          <img src="images/santoriniServices.jpg" alt="santorini view" loading="lazy">
+        </picture>
+      </div>
       <div class="div2">
         <h2>Our Services</h2>
         <ul>
@@ -48,23 +62,35 @@
       </div>
 
       <div class="div3">
-        <img src="images/tour-guide.webp" alt="guide icon">
+        <picture>
+          <source srcset="images/tour-guide.webp" type="image/webp">
+          <img src="images/tour-guide.png" alt="tour guide icon" loading="lazy">
+        </picture>
         <p>Expert-Led Guided Tours</p>
       </div>
 
       <div class="div4">
-        <img src="images/driver.webp" alt="driver icon">
+        <picture>
+          <source srcset="images/driver.webp" type="image/webp">
+          <img src="images/driver.png" alt="driver icon" loading="lazy">
+        </picture>
         <p>Professional Licensed Drivers</p>
       </div>
 
       <div class="div5">
-        <img src="images/best-price.webp" alt="price icon">
+        <picture>
+          <source srcset="images/best-price.webp" type="image/webp">
+          <img src="images/best-price.png" alt="best price icon" loading="lazy">
+        </picture>
         <p>Competitive & Transparent Pricing</p>
       </div>
 
       <div class="div6">
-        <img src="images/hotel.webp" alt="hotel icon">
-        <p>Premium Comfort & Accommodations</p>
+        <picture>
+          <source srcset="images/hotel.webp" type="image/webp">
+          <img src="images/hotel.png" alt="5 star hotel icon" loading="lazy">
+        </picture>
+        <p>Premium Accommodations</p>
       </div>
 
       <div class="div7">
@@ -77,7 +103,10 @@
       </div>
 
       <div class="div8">
-        <img src="images/athens.webp" alt="athens view">
+        <picture>
+          <source srcset="images/athens.webp" type="image/webp">
+          <img src="images/athens.jpg" alt="Historical Athens view" loading="lazy">
+        </picture>
       </div>
     </section>
     <section class="destination">
@@ -92,7 +121,11 @@
       <div class="destination-grid">
 
         <div class="destination-card des1">
-          <img src="images/santorini.webp" alt="santorini view">
+          <picture>
+            <source srcset="images/santorini.webp" type="image/webp">
+            <img src="images/santorini.jpg" alt="santorini view" loading="lazy">
+          </picture>
+
           <h3> <span>
               Hover or tap on a destination to see more details.
             </span><br> Santorini</h3>
@@ -105,7 +138,10 @@
           </div>
         </div>
         <div class="destination-card des2">
-          <img src="images/lefkada.webp" alt="lefkada beach view">
+          <picture>
+            <source srcset="images/lefkada.webp" type="image/webp">
+            <img src="images/lefkada.jpg" alt="lefkada sea view" loading="lazy">
+          </picture>
           <h3> <span>
               Hover or tap on a destination to see more details.
             </span><br> Lefkada</h3>
@@ -118,7 +154,10 @@
           </div>
         </div>
         <div class="destination-card des3">
-          <img src="images/acropolis.webp" alt="athens acropolis">
+          <picture>
+            <source srcset="images/acropolis.webp" type="image/webp">
+            <img src="images/acropolis.jpg" alt="acropolis site image" loading="lazy">
+          </picture>
           <h3> <span>
               Hover or tap on a destination to see more details.
             </span><br> Athens</h3>
@@ -131,7 +170,10 @@
           </div>
         </div>
         <div class="destination-card des4">
-          <img src="images/mykonos.webp" alt="mykonos alley">
+          <picture>
+            <source srcset="images/mykonos.webp" type="image/webp">
+            <img src="images/mykonos.jpg" alt="mykonos alley" loading="lazy">
+          </picture>
           <h3> <span>
               Hover or tap on a destination to see more details.
             </span><br> Mykonos
@@ -145,8 +187,11 @@
           </div>
         </div>
         <div class="destination-card des5">
+          <picture>
+            <source srcset="images/thessaloniki.webp" type="image/webp">
+            <img src="images/thessaloniki.jpg" alt="thessaloniki white castle" loading="lazy">
+          </picture>
 
-          <img src="images/thessaloniki.webp" alt="thessaloniki white castle">
           <h3> <span>
               Hover or tap on a destination to see more details.
             </span><br>Thessaloniki</h3>
@@ -161,9 +206,10 @@
 
 
         </div>
+      </div>
+      <div class="destination-btn">
         <a href="services.html" class="btn-base">View More</a>
       </div>
-
     </section>
 
   </main>

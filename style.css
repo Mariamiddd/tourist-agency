@@ -53,7 +53,7 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center; 
+  align-items: center;
   padding: 1rem 3rem;
   box-shadow: 1px 2px 10px var(--shadow);
 
@@ -120,9 +120,16 @@ nav a.active {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: url(images/background.webp) center/cover no-repeat;
+  background: url(images/background.jpg) center/cover no-repeat;
   opacity: 0.7;
   z-index: 1;
+}
+
+/* Upgrade to WebP for supporting browsers */
+@supports (background-image: url("images/background.webp")) {
+  .hero::before {
+    background-image: url(images/background.webp);
+  }
 }
 
 .hero>* {
@@ -131,23 +138,29 @@ nav a.active {
   text-shadow: 1px 1px var(--shadow);
 }
 
-
 .ship-wrapper {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   pointer-events: none;
+  height: 100px;
 }
 
-.ship {
+.ship-wrapper picture {
   position: absolute;
   bottom: 0;
-  left: 50%;
-  width: 100px;
-  transform: translateX(-50%);
-  animation: wave 4s ease-in-out infinite, sail 20s linear infinite;
+  animation: sail 20s linear infinite;
 }
+
+.ship-wrapper img {
+  position: relative;
+  left: -40%;
+  width: 100px;
+  height: auto;
+  animation: wave 4s ease-in-out infinite;
+}
+
 
 /* up and down wave motion */
 @keyframes wave {
@@ -212,13 +225,12 @@ nav a.active {
   font-size: 1.4rem;
 }
 
-
-.div1>img,
-.div8>img {
-  display: block;
-  height: 100%;
+.div1 picture img,
+.div8 picture img {
   width: 100%;
+  height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 .services>.div2,
@@ -259,7 +271,6 @@ nav a.active {
 }
 
 .btn-base {
-  margin-top: 15px;
   padding: 10px 15px;
   font-size: 1.2rem;
   background-color: var(--bg-medium);
@@ -275,14 +286,17 @@ nav a.active {
 .btn-base:hover {
   background-color: var(--bg-blue);
 }
-
-
+.destination-btn{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
 .destination-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 2fr;
   grid-auto-rows: 1px;
   gap: 30px;
-  margin: 50px;
+  margin: 30px 50px;
 }
 
 .destination-header {
@@ -416,7 +430,6 @@ footer {
   position: static;
   bottom: 0;
   left: 0;
-  margin-top: 20px;
   z-index: 11;
   padding: 1rem;
   width: 100%;
@@ -459,8 +472,14 @@ footer {
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/santoriniServices.webp') center/cover no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/santoriniServices.jpg') center/cover no-repeat;
   color: white;
+}
+
+@supports (background-image: url("images/santoriniServices.webp")) {
+    .services-hero {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/santoriniServices.webp');
+    }
 }
 
 .services-hero-content h1 {
@@ -822,10 +841,10 @@ footer {
 }
 
 .mySlides img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
+    width: 100%; 
+    height: auto; 
+    display: block;
+    object-fit: cover;
 }
 
 /* cursor on slider imgs */
@@ -884,6 +903,10 @@ footer {
   content: "";
   display: table;
   clear: both;
+}
+.container-gallery{
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 
@@ -1106,9 +1129,11 @@ footer {
   html {
     font-size: 8px;
   }
-  body{
+
+  body {
     margin-bottom: 100px;
   }
+
   header {
     position: relative;
     display: flex;

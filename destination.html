@@ -6,12 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Destinations - Odyssey Travel</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="shortcut icon" href="images/favicon.webp" type="image/x-icon">
+  <link rel="icon" href="images/favicon.webp" type="image/webp">
+  <link rel="icon" href="images/favicon.png" type="image/png">
 </head>
 
 <body>
   <header>
-    <a href="index.html"><h1><img src="images/favicon.webp" alt="page-icon">Odyssey Travel</h1></a>
+    <a href="index.html">
+      <h1>        <picture>
+          <source srcset="images/favicon.webp" type="image/webp">
+          <img src="images/favicon.png" alt="page icon" loading="lazy">
+        </picture>Odyssey Travel</h1>
+    </a>
     <nav>
       <a href="index.html">Home</a>
       <a href="services.html">Services</a>
@@ -30,7 +36,8 @@
         <p>Where every wave tells a story and every sunset feels eternal. Discover the islands that shaped legends.</p>
       </div>
       <video autoplay muted loop class="hero-video">
-        <source src="images/video.webm" type="video/mp4">
+        <source src="images/video.webm" type="video/webm">
+        <source src="images/video.mp4" type="video/mp4">
       </video>
     </section>
 
@@ -42,23 +49,40 @@
         <div class="slider-wrapper">
           <div class="mySlides">
             <div class="numberText">1/5</div>
-            <img src="images/santorinides.webp" alt="Santorini">
+            <picture>
+              <source srcset="images/santorinides.webp" type="image/webp">
+              <img src="images/santorinides.jpg" alt="santorini beautiful view" loading="lazy">
+            </picture>
           </div>
           <div class="mySlides">
             <div class="numberText">2/5</div>
-            <img src="images/lefkadades.webp" alt="lefkada">
+            <picture>
+              <source srcset="images/lefkadades.webp" type="image/webp">
+              <img src="images/lefkadades.jpg" alt="lefkada beautiful view" loading="lazy">
+            </picture>
           </div>
           <div class="mySlides">
             <div class="numberText">3/5</div>
-            <img src="images/athensdes.webp" alt="athens">
+            <picture>
+              <source srcset="images/athensdes.webp" type="image/webp">
+              <img src="images/athensdes.jpg" alt="Bust of a bearded ancient Greek man" loading="lazy">
+            </picture>
           </div>
           <div class="mySlides">
             <div class="numberText">4/5</div>
-            <img src="images/mykonosdes.webp" alt="Mykonos">
+            <picture>
+              <source srcset="images/mykonosdes.webp" type="image/webp">
+              <img src="images/mykonosdes.jpg" alt="mykonos sea and city view" loading="lazy">
+            </picture>
           </div>
           <div class="mySlides">
             <div class="numberText">5/5</div>
-            <img src="images/thessalonikides.webp" alt="thessaloniki">
+            <picture>
+              <source srcset="images/thessalonikides.webp" type="image/webp">
+              <img src="images/thessalonikides.jpg"
+                alt="Waterfront promenade in Thessaloniki with people strolling along the seawall and apartment buildings lining the coast."
+                loading="lazy">
+            </picture>
           </div>
 
           <a class="prev" onclick="plusSlides(-1)">❮</a>
@@ -69,24 +93,39 @@
 
           <div class="row">
             <div class="column">
-              <img class="demo cursor" src="images/santorinides.webp" style="width:100%" onclick="currentSlide(1)"
-                alt="Santorini">
+              <picture>
+                <source srcset="images/santorinides.webp" type="image/webp">
+                <img class="demo cursor" src="images/santorinides.jpg" style="width:100%" onclick="currentSlide(1)"
+                  alt="Santorini">
+              </picture>
             </div>
             <div class="column">
-              <img class="demo cursor" src="images/lefkadades.webp" style="width:100%" onclick="currentSlide(2)"
-                alt="Lefkada">
+              <picture>
+                <source srcset="images/lefkadades.webp" type="image/webp">
+                <img class="demo cursor" src="images/lefkadades.jpg" style="width:100%" onclick="currentSlide(2)"
+                  alt="Lefkada">
+              </picture>
             </div>
             <div class="column">
-              <img class="demo cursor" src="images/athensdes.webp" style="width:100%" onclick="currentSlide(3)"
-                alt="Athens">
+              <picture>
+                <source srcset="images/athensdes.webp" type="image/webp">
+                <img class="demo cursor" src="images/athensdes.jpg" style="width:100%" onclick="currentSlide(3)"
+                  alt="Athens">
+              </picture>
             </div>
             <div class="column">
-              <img class="demo cursor" src="images/mykonosdes.webp" style="width:100%" onclick="currentSlide(4)"
-                alt="Mykonos">
+              <picture>
+                <source srcset="images/mykonosdes.webp" type="image/webp">
+                <img class="demo cursor" src="images/mykonosdes.jpg" style="width:100%" onclick="currentSlide(4)"
+                  alt="Mykonos">
+              </picture>
             </div>
             <div class="column">
-              <img class="demo cursor" src="images/thessalonikides.webp" style="width:100%" onclick="currentSlide(5)"
-                alt="Thessaloniki">
+              <picture>
+                <source srcset="images/thessalonikides.webp" type="image/webp">
+                <img class="demo cursor" src="images/thessalonikides.jpg" style="width:100%" onclick="currentSlide(5)"
+                  alt="Thessaloniki">
+              </picture>
             </div>
           </div>
         </div>
@@ -108,7 +147,10 @@
         <a href="contact.html" class="btn-base">Plan a Santorini Trip</a>
       </div>
       <div class="images">
-        <img src="images/santorinides.webp" alt="Santorini view">
+        <picture>
+          <source srcset="images/santorinides.webp" type="image/webp">
+          <img src="images/santorinides.jpg" alt="santorini beautiful view" loading="lazy">
+        </picture>
       </div>
     </section>
 
@@ -125,7 +167,10 @@
         <a href="contact.html" class="btn-base">Book Your Athens Experience</a>
       </div>
       <div class="images">
-        <img src="images/athensdes.webp" alt="Athens acropolis">
+        <picture>
+          <source srcset="images/athensdes.webp" type="image/webp">
+          <img src="images/athensdes.jpg" alt="Bust of a bearded ancient Greek man" loading="lazy">
+        </picture>
       </div>
     </section>
 
@@ -143,7 +188,10 @@
         <a href="contact.html" class="btn-base">Plan Your Lefkada Adventure</a>
       </div>
       <div class="images">
-        <img src="images/lefkadades.webp" alt="lefkada beach">
+        <picture>
+          <source srcset="images/lefkadades.webp" type="image/webp">
+          <img src="images/lefkadades.jpg" alt="lefkada beautiful view" loading="lazy">
+        </picture>
       </div>
     </section>
 
@@ -161,7 +209,10 @@
         <a href="contact.html" class="btn-base">Book Your Mykonos Experience</a>
       </div>
       <div class="images">
-        <img src="images/mykonosdes.webp" alt="mykonos view">
+        <picture>
+          <source srcset="images/mykonosdes.webp" type="image/webp">
+          <img src="images/mykonosdes.jpg" alt="mykonos sea and city view" loading="lazy">
+        </picture>
       </div>
     </section>
 
@@ -180,7 +231,12 @@
         <a href="contact.html" class="btn-base">Book Your Thessaloniki Experience</a>
       </div>
       <div class="images">
-        <img src="images/thessalonikides.webp" alt="Thessaloniki city view">
+        <picture>
+          <source srcset="images/thessalonikides.webp" type="image/webp">
+          <img src="images/thessalonikides.jpg"
+            alt="Waterfront promenade in Thessaloniki with people strolling along the seawall and apartment buildings lining the coast."
+            loading="lazy">
+        </picture>
       </div>
     </section>
 
