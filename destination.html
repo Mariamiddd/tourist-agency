@@ -12,11 +12,14 @@
 
 <body>
   <header>
+
     <a href="index.html">
-      <h1>        <picture>
+      <h1>
+        <picture>
           <source srcset="images/favicon.webp" type="image/webp">
           <img src="images/favicon.png" alt="page icon" loading="lazy">
-        </picture>Odyssey Travel</h1>
+        </picture>Odyssey Travel
+      </h1>
     </a>
     <nav>
       <a href="index.html">Home</a>
@@ -28,217 +31,103 @@
   </header>
 
 
+  <div id="preloader-wrapper">
+    <svg class="svg-calLoader" xmlns="http://www.w3.org/2000/svg" width="230" height="230">
+      <path class="cal-loader__path"
+        d="M86.429 40c63.616-20.04 101.511 25.08 107.265 61.93 6.487 41.54-18.593 76.99-50.6 87.643-59.46 19.791-101.262-23.577-107.142-62.616C29.398 83.441 59.945 48.343 86.43 40z"
+        fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"
+        stroke-dasharray="10 10 10 10 10 10 10 432" stroke-dashoffset="77" />
+      <path class="cal-loader__plane"
+        d="M141.493 37.93c-1.087-.927-2.942-2.002-4.32-2.501-2.259-.824-3.252-.955-9.293-1.172-4.017-.146-5.197-.23-5.47-.37-.766-.407-1.526-1.448-7.114-9.773-4.8-7.145-5.344-7.914-6.327-8.976-1.214-1.306-1.396-1.378-3.79-1.473-1.036-.04-2-.043-2.153-.002-.353.1-.87.586-1 .952-.139.399-.076.71.431 2.22.241.72 1.029 3.386 1.742 5.918 1.644 5.844 2.378 8.343 2.863 9.705.206.601.33 1.1.275 1.125-.24.097-10.56 1.066-11.014 1.032a3.532 3.532 0 0 1-1.002-.276l-.487-.246-2.044-2.613c-2.234-2.87-2.228-2.864-3.35-3.309-.717-.287-2.82-.386-3.276-.163-.457.237-.727.644-.737 1.152-.018.39.167.805 1.916 4.373 1.06 2.166 1.964 4.083 1.998 4.27.04.179.004.521-.076.75-.093.228-1.109 2.064-2.269 4.088-1.921 3.34-2.11 3.711-2.123 4.107-.008.25.061.557.168.725.328.512.72.644 1.966.676 1.32.029 2.352-.236 3.05-.762.222-.171 1.275-1.313 2.412-2.611 1.918-2.185 2.048-2.32 2.45-2.505.241-.111.601-.232.82-.271.267-.058 2.213.201 5.912.8 3.036.48 5.525.894 5.518.914 0 .026-.121.306-.27.638-.54 1.198-1.515 3.842-3.35 9.021-1.029 2.913-2.107 5.897-2.4 6.62-.703 1.748-.725 1.833-.594 2.286.137.46.45.833.872 1.012.41.177 3.823.24 4.37.085.852-.25 1.44-.688 2.312-1.724 1.166-1.39 3.169-3.948 6.771-8.661 5.8-7.583 6.561-8.49 7.387-8.702.233-.065 2.828-.056 5.784.011 5.827.138 6.64.09 8.62-.5 2.24-.67 4.035-1.65 5.517-3.016 1.136-1.054 1.135-1.014.207-1.962-.357-.38-.767-.777-.902-.893z"
+        class="cal-loader__plane" fill="#000033" />
+    </svg>
+  </div>
+
+
+
   <main class="destinations-page">
-    <!-- HERO SECTION -->
-    <section class="destination-hero">
-      <div class="hero-text">
-        <h1>Explore Greece — One Island at a Time</h1>
-        <p>Where every wave tells a story and every sunset feels eternal. Discover the islands that shaped legends.</p>
-      </div>
-      <video autoplay muted loop class="hero-video">
-        <source src="images/video.webm" type="video/webm">
-        <source src="images/video.mp4" type="video/mp4">
-      </video>
-    </section>
+    <section class="auth-section">
+  <nav class="auth-nav">
+    <div id="auth-links">
+      <button onclick="openSignUpPopup()">Create Account</button>
+      <button onclick="openSignInPopup()">Sign In</button>
+    </div>
+  </nav>
+</section>
 
-    <section class="scroll-gallery">
-      <h2>Explore the Greek Isles</h2>
-      <p>Scroll through our favorite destinations and discover your next adventure.</p>
+<section class="filter-section">
+  <div class="search-sort-row">
+    <input type="text" id="search-input" placeholder="Search destinations...">
 
-      <div class="container-gallery">
-        <div class="slider-wrapper">
-          <div class="mySlides">
-            <div class="numberText">1/5</div>
-            <picture>
-              <source srcset="images/santorinides.webp" type="image/webp">
-              <img src="images/santorinides.jpg" alt="santorini beautiful view" loading="lazy">
-            </picture>
-          </div>
-          <div class="mySlides">
-            <div class="numberText">2/5</div>
-            <picture>
-              <source srcset="images/lefkadades.webp" type="image/webp">
-              <img src="images/lefkadades.jpg" alt="lefkada beautiful view" loading="lazy">
-            </picture>
-          </div>
-          <div class="mySlides">
-            <div class="numberText">3/5</div>
-            <picture>
-              <source srcset="images/athensdes.webp" type="image/webp">
-              <img src="images/athensdes.jpg" alt="Bust of a bearded ancient Greek man" loading="lazy">
-            </picture>
-          </div>
-          <div class="mySlides">
-            <div class="numberText">4/5</div>
-            <picture>
-              <source srcset="images/mykonosdes.webp" type="image/webp">
-              <img src="images/mykonosdes.jpg" alt="mykonos sea and city view" loading="lazy">
-            </picture>
-          </div>
-          <div class="mySlides">
-            <div class="numberText">5/5</div>
-            <picture>
-              <source srcset="images/thessalonikides.webp" type="image/webp">
-              <img src="images/thessalonikides.jpg"
-                alt="Waterfront promenade in Thessaloniki with people strolling along the seawall and apartment buildings lining the coast."
-                loading="lazy">
-            </picture>
-          </div>
+    <select id="sort-select">
+      <option value="">Sort by</option>
+      <option value="name-asc">Name (A-Z)</option>
+      <option value="name-desc">Name (Z-A)</option>
+      <option value="price-asc">Price (Low to High)</option>
+      <option value="price-desc">Price (High to Low)</option>
+    </select>
+  </div>
+</section>
 
-          <a class="prev" onclick="plusSlides(-1)">❮</a>
-          <a class="next" onclick="plusSlides(1)">❯</a>
-          <div class="caption-container">
-            <h3 id="caption"></h3>
-          </div>
 
-          <div class="row">
-            <div class="column">
-              <picture>
-                <source srcset="images/santorinides.webp" type="image/webp">
-                <img class="demo cursor" src="images/santorinides.jpg" style="width:100%" onclick="currentSlide(1)"
-                  alt="Santorini">
-              </picture>
+<div id="popupOverlay" class="popup-overlay"  style="display: none">
+  <div class="popup-content">
+            <span id="closePopup" class="close-btn">&times;</span>
+            <form id="signUpForm">
+                <h2 >Create Account</h2>
+                <input type="text" id="firstName" placeholder="First Name" required>
+                <input type="text" id="lastName" placeholder="Last Name" required>
+                <input type="number" id="age" placeholder="Age" min="1" required>
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Password (min 8 chars)" required>
+                
+                <input type="text" id="address" placeholder="Address" required>
+                <input type="text" id="phone" placeholder="Phone Number" required>
+                <input type="text" id="zipcode" placeholder="Zip Code" required>
+                <input type="url" id="avatar" placeholder="Avatar URL (Image link)" required>
+
+                <select id="gender">
+                    <option value="MALE">Male</option>
+                    <option value="FEMALE">Female</option>
+                </select>
+                <button type="submit">Sign Up</button>
+                <div id="message"></div>
+            </form>
             </div>
-            <div class="column">
-              <picture>
-                <source srcset="images/lefkadades.webp" type="image/webp">
-                <img class="demo cursor" src="images/lefkadades.jpg" style="width:100%" onclick="currentSlide(2)"
-                  alt="Lefkada">
-              </picture>
-            </div>
-            <div class="column">
-              <picture>
-                <source srcset="images/athensdes.webp" type="image/webp">
-                <img class="demo cursor" src="images/athensdes.jpg" style="width:100%" onclick="currentSlide(3)"
-                  alt="Athens">
-              </picture>
-            </div>
-            <div class="column">
-              <picture>
-                <source srcset="images/mykonosdes.webp" type="image/webp">
-                <img class="demo cursor" src="images/mykonosdes.jpg" style="width:100%" onclick="currentSlide(4)"
-                  alt="Mykonos">
-              </picture>
-            </div>
-            <div class="column">
-              <picture>
-                <source srcset="images/thessalonikides.webp" type="image/webp">
-                <img class="demo cursor" src="images/thessalonikides.jpg" style="width:100%" onclick="currentSlide(5)"
-                  alt="Thessaloniki">
-              </picture>
-            </div>
-          </div>
-        </div>
+       </div>
+<div id="signInOverlay" class="popup-overlay" class="pop-up-container" style="display: none">
+    <div class="popup-content">
+        <span id="closeSignIn" class="close-btn">&times;</span>
+        <form id="signInForm">
+            <h2>Welcome Back</h2>
+            <input type="email" id="signInEmail" placeholder="Email" required>
+            <input type="password" id="signInPassword" placeholder="Password" required>
+            <button type="submit">Login</button>
+            <div id="signInMessage"></div>
+        </form>
+    </div>
+</div>
+    
+    <button id="basket">🛒 <span id="cart-count">0</span></button>
+
+    <section id="cart">
+      <h4 class="cart-title">Your Trip</h4>
+      <div id="cart-items-container">
+        <p>Your cart is empty.</p>
       </div>
+      <div>
+        Total: <span id="cart-total">$0.00</span>
+      </div>
+      <button>Checkout</button>
+    </section>
+
+    <section class="container-box">
+      <section id="container_api">
+      </section>
+
     </section>
 
 
-    <section class="featured-destination santorini">
-      <div class="text">
-        <h2>Santorini</h2>
-        <p>Famed for its whitewashed houses and blue-domed roofs, Santorini is a breathtaking blend of volcanic
-          landscapes and serene beauty. Wander Oia’s alleys, explore ancient Akrotiri, and taste wines grown in volcanic
-          soil.</p>
-        <ul>
-          <li>🌅 Sunset view in Oia</li>
-          <li>🍷 Wine tasting in Pyrgos</li>
-          <li>🏖️ Red Beach & Kamari Beach</li>
-        </ul>
-        <a href="contact.html" class="btn-base">Plan a Santorini Trip</a>
-      </div>
-      <div class="images">
-        <picture>
-          <source srcset="images/santorinides.webp" type="image/webp">
-          <img src="images/santorinides.jpg" alt="santorini beautiful view" loading="lazy">
-        </picture>
-      </div>
-    </section>
-
-    <section class="featured-destination athens">
-      <div class="text">
-        <h2>Athens</h2>
-        <p>Step into history where democracy was born. From the Acropolis to Plaka’s narrow lanes, Athens blends myth
-          and modernity in every street corner.</p>
-        <ul>
-          <li>🏛️ Visit the Acropolis and Parthenon</li>
-          <li>🥙 Taste authentic Greek souvlaki</li>
-          <li>🎭 Discover ancient theatres</li>
-        </ul>
-        <a href="contact.html" class="btn-base">Book Your Athens Experience</a>
-      </div>
-      <div class="images">
-        <picture>
-          <source srcset="images/athensdes.webp" type="image/webp">
-          <img src="images/athensdes.jpg" alt="Bust of a bearded ancient Greek man" loading="lazy">
-        </picture>
-      </div>
-    </section>
-
-    <section class="featured-destination lefkada">
-      <div class="text">
-        <h2>Lefkada</h2>
-        <p>Connected to the mainland by a causeway, Lefkada boasts some of Greece's most stunning beaches with
-          turquoise waters and dramatic cliffs. Explore Porto Katsiki, Egremni, and the charming villages nestled in the
-          island's hills.</p>
-        <ul>
-          <li>🏖️ Porto Katsiki & Egremni beaches</li>
-          <li>🚗 Scenic coastal drives</li>
-          <li>🏔️ Traditional mountain villages</li>
-        </ul>
-        <a href="contact.html" class="btn-base">Plan Your Lefkada Adventure</a>
-      </div>
-      <div class="images">
-        <picture>
-          <source srcset="images/lefkadades.webp" type="image/webp">
-          <img src="images/lefkadades.jpg" alt="lefkada beautiful view" loading="lazy">
-        </picture>
-      </div>
-    </section>
-
-    <section class="featured-destination mykonos">
-      <div class="text">
-        <h2>Mykonos</h2>
-        <p>Experience the glamorous side of the Greek islands with chic beach clubs, designer boutiques in winding
-          alleys, and vibrant nightlife. Beyond the party scene, discover tranquil beaches and traditional villages that
-          showcase Mykonos' authentic charm.</p>
-        <ul>
-          <li>🌅 Iconic windmills & Little Venice</li>
-          <li>🏛️ Day trip to ancient Delos</li>
-          <li>🎉 World-class beach clubs & nightlife</li>
-        </ul>
-        <a href="contact.html" class="btn-base">Book Your Mykonos Experience</a>
-      </div>
-      <div class="images">
-        <picture>
-          <source srcset="images/mykonosdes.webp" type="image/webp">
-          <img src="images/mykonosdes.jpg" alt="mykonos sea and city view" loading="lazy">
-        </picture>
-      </div>
-    </section>
-
-
-    <section class="featured-destination thessaloniki">
-      <div class="text">
-        <h2>Thessaloniki</h2>
-        <p>Greece's second city, Thessaloniki, is a vibrant blend of history, culture, and culinary delights. Stroll
-          along the waterfront promenade, explore Byzantine walls, and savor the city's renowned gastronomy in bustling
-          markets and tavernas.</p>
-        <ul>
-          <li>🏰 White Tower & Byzantine walls</li>
-          <li>🍽️ Famous food markets & tavernas</li>
-          <li>🎭 Vibrant nightlife & culture</li>
-        </ul>
-        <a href="contact.html" class="btn-base">Book Your Thessaloniki Experience</a>
-      </div>
-      <div class="images">
-        <picture>
-          <source srcset="images/thessalonikides.webp" type="image/webp">
-          <img src="images/thessalonikides.jpg"
-            alt="Waterfront promenade in Thessaloniki with people strolling along the seawall and apartment buildings lining the coast."
-            loading="lazy">
-        </picture>
-      </div>
-    </section>
 
     <section class="reviews">
       <h2>Traveler Experiences</h2>
