@@ -5,48 +5,51 @@
   text-decoration: none;
 }
 
-.heart-icon {
-  width: 25px;
-  height: 25px;
-  fill: none;
-  stroke: #ff3b3b;
-  stroke-width: 1.5;
-  transition: all 0.5s ease;
+@font-face {
+  font-family: 'Playfair Display';
+  src: url(fonts/PlayfairDisplay-VariableFont_wght.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
-.fav-btn.active .heart-icon {
-  fill: #ff3b3b;
+@font-face {
+  font-family: 'Lato';
+  src: url(fonts/Lato-Bold.ttf) format('truetype');
 }
 
-.fav-btn:hover .heart-icon {
-  transform: scale(1.1);
+
+:root {
+  --bg-main: #0e576e;
+  --nav-color: #1a1f23;
+  --nav-hover: #45adcb;
+  --nav-active: #e35c36;
+  --text-headers: #ebbd02;
+  --text-dark: #1a1f23;
+  --text-highlight: #e35c36;
+  --text-darker: #1a1f23;
+  --container-bg: #e2cdb2;
+  --btn-bg: #90865f;
+  --btn-hover: #978540;
+  --btn-text: #1a1f23;
+  --shadow: rgba(0, 0, 0, 0.3);
+  --transition: 0.3s ease;
+  font-size: 15px;
 }
 
-.weather-container {
+html {
+  scroll-behavior: smooth;
+}
+
+/* HomePage */
+body {
+  font-family: 'Playfair Display', serif;
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
-  margin: 10px 0;
-}
-
-.weather-container div {
-  display: flex;
-  align-items: center;
-  background-color: var(--nav-hover);
-  padding: 4px 12px;
-  border-radius: 20px;
-  gap: 22px;
-}
-
-.weather-container img {
-  width: 40px !important;
-  height: 40px !important;
-}
-
-.weather-container span {
-  font-size: 1.5rem;
-  font-weight: bold;
+  flex-direction: column;
   color: var(--btn-text);
+  background: var(--bg-main);
 }
+
 
 /* loader */
 #preloader-wrapper {
@@ -111,51 +114,74 @@
 
 }
 
-@font-face {
-  font-family: 'Playfair Display';
-  src: url(fonts/PlayfairDisplay-VariableFont_wght.ttf) format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url(fonts/Lato-Bold.ttf) format('truetype');
-}
 
 
-:root {
-  --bg-main: #0e576e;
-  --nav-color: #1a1f23;
-  --nav-hover: #45adcb;
-  --nav-active:#e35c36;
-  --text-headers: #ebbd02;
-  --text-dark: #1a1f23;
-  --text-highlight:#e35c36;
-  --text-darker: #1a1f23;
-  --container-bg: #e2cdb2;
-  --btn-bg: #90865f;
-  --btn-hover:#978540;
-  --btn-text: #1a1f23;
-  --shadow: rgba(0, 0, 0, 0.3);
-  --transition: 0.3s ease;
 
-  font-size: 15px;
-}
 
-html {
-  scroll-behavior: smooth;
-}
 
-/* HomePage */
-body {
-  font-family: 'Playfair Display', serif;
-  min-height: 100vh;
+
+
+
+
+
+
+/* api container */
+#container_api {
   display: flex;
-  flex-direction: column;
-  color: var(--bg-light);
-  background: var(--bg-main);
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  padding: 30px;
 }
+
+/* 2. cards - api*/
+.destination-item {
+  background: var(--container-bg);
+  max-width: 400px;
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px;
+}
+
+/* 3.  api-card image */
+.destination-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.destination-item h3 {
+  margin: 15px 0 5px 0;
+  color: var(--text-highlight);
+}
+
+.destination-item p {
+  height: 80px;
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 10px;
+  color: var(--text-dark);
+}
+
+.destination-item h2 {
+  color: var(--nav-hover);
+}
+
+.destination-item button {
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border: none;
+  padding: 10px 25px;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.destination-item button:hover {
+  background-color: var(--btn-hover);
+}
+
 
 header {
   display: flex;
@@ -210,6 +236,340 @@ nav a.active {
   font-weight: 700;
 }
 
+
+
+/* --- Side Drawer Cart --- */
+#cart {
+  display: flex; /* Always flex but hidden via right property */
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  right: -400px; /* Hidden off-screen to the right */
+  width: 380px;
+  height: 100vh;
+  background-color: #ffffff;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+  z-index: 9999; /* Stay above everything else */
+  padding: 30px;
+  transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* When active, slide it into view */
+#cart.active {
+  right: 0;
+}
+
+/* Cart Header */
+.cart-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: var(--bg-main);
+  margin-bottom: 25px;
+  border-bottom: 2px solid var(--nav-hover);
+  padding-bottom: 10px;
+}
+
+/* Items Area */
+#cart-items-container {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+
+/* Individual Cart Item */
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+}
+
+/* Checkout Section */
+#cart div:last-of-type {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding: 20px 0;
+  text-align: right;
+}
+
+#cart button:last-of-type {
+  width: 100%;
+  padding: 15px;
+  background-color: var(--nav-active);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+#cart button:last-of-type:hover {
+  filter: brightness(1.1);
+}
+/* This container now controls the left/right placement */
+.auth-section {
+  display: flex;
+  justify-content: space-between; /* This pushes links to the left and basket to the right */
+  align-items: center;
+  width: 100%;
+  padding: 15px 3rem;
+  background: transparent !important; /* No background bar */
+  position: relative;
+  z-index: 1005;
+}
+
+/* Remove the "ugly" white box and blue border */
+#basket {
+  background: none; /* Makes background nonexistent */
+  border: none;     /* Removes the blue border */
+  font-size: 1.8rem;
+  cursor: pointer;
+  display: flex;  
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  position: fixed; /* NOT FIXED */
+  transition: transform 0.2s ease;
+  top: 18%;      /* Adjust this to sit where you want vertically */
+  right: 1rem;     /* THIS MOVES IT TO THE RIGHT SIDE */
+  /* appear top */
+  z-index: 3000;
+  background-color: var(--nav-color);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+#basket:hover {
+  transform: scale(1.1);
+}
+
+/* Style the number badge to look clean */
+#cart-count {
+  background: var(--nav-active);
+  color: white;
+  font-size: 0.9rem;
+  padding: 2px 8px;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 30px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+
+
+/* destination pop up */
+.popup-content {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  animation: scaleUp 0.3s ease-out;
+}
+
+@keyframes scaleUp {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.heart-icon {
+  width: 25px;
+  height: 25px;
+  fill: none;
+  stroke: #ff3b3b;
+  stroke-width: 1.5;
+  transition: all 0.5s ease;
+}
+
+.fav-btn.active .heart-icon {
+  fill: #ff3b3b;
+}
+
+.fav-btn:hover .heart-icon {
+  transform: scale(1.1);
+}
+
+.weather-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.weather-container div {
+  display: flex;
+  align-items: center;
+  background-color: var(--nav-hover);
+  padding: 4px 12px;
+  border-radius: 20px;
+  gap: 22px;
+}
+
+.weather-container img {
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.weather-container span {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--btn-text);
+}
+
+
+
+
+
+.close-btn {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#signUpForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#signUpForm input,
+#signUpForm select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#signUpForm button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+#signUpForm button:hover {
+  background: #0056b3;
+}
+
+#pop-up-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+}
+
+.active {
+  display: block;
+}
+
+
+
+#auth-links, #user-profile {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.auth-section button {
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border: none;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px; /* Using PX to avoid the 8px html scaling */
+  transition: var(--transition);
+}
+
+.auth-section button:hover {
+  background-color: var(--btn-hover);
+}
+
+#user-name {
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.search-sort-row {
+  display: flex;
+  gap: 5px;
+}
+
+.search-sort-row input,
+.search-sort-row select {
+  padding: 3px 5px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.filter-section {
+  max-width: 900px;
+  margin: 10px auto;
+  padding: 10px;
+  background: var(--container-bg);
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.search-sort-row {
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+}
+
+.search-sort-row input {
+  flex: 1;
+}
+
+.search-sort-row input,
+.search-sort-row select {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
 .hero {
   position: relative;
   min-height: 90vh;
@@ -291,15 +651,18 @@ nav a.active {
   text-align: left;
   padding: 5rem;
 }
-.services>.div2 a{
+
+.services>.div2 a {
   background-color: #343229;
   color: var(--container-bg);
   margin-top: 10px;
 }
-.services>.div2 a:hover{
+
+.services>.div2 a:hover {
   background-color: #080805;
   color: var(--container-bg)
 }
+
 .services li {
   list-style-type: circle;
   list-style-position: inside;
@@ -330,8 +693,8 @@ nav a.active {
 .btn-base {
   padding: 10px 15px;
   font-size: 1.2rem;
-  background-color: var(--bg-medium);
-  color: var(--bg-light);
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -341,7 +704,7 @@ nav a.active {
 }
 
 .btn-base:hover {
-  background-color: var(--bg-blue);
+  background-color: var(--btn-hover);
 }
 
 .destination-btn {
@@ -664,7 +1027,7 @@ footer {
 
 .services-additional {
   padding: 5rem 5%;
-  background-color: var(--bg-dark);
+  background-color: var(--bg-main);
   text-align: center;
 }
 
@@ -687,7 +1050,6 @@ footer {
   background: var(--container-bg);
   padding: 2.5rem 2rem;
   border-radius: 12px;
-  box-shadow: 0 4px 15px var(--shadow);
   transition: transform 0.3s ease;
   cursor: pointer;
 }
@@ -757,7 +1119,6 @@ footer {
   border-radius: 1rem;
   padding: 2rem;
   font-style: italic;
-  box-shadow: 0 3px 12px var(--shadow);
   position: relative;
 }
 
@@ -835,7 +1196,7 @@ footer {
 .contact-form input[type="email"],
 .contact-form textarea,
 .contact-form select {
-  border: 2px solid var(--text-hover);
+  border: 2px solid var(--btn-bg);
   font-family: "Montserrat", sans-serif;
 }
 
@@ -850,7 +1211,11 @@ footer {
 
 .btn-contact {
   align-self: center;
-  background-color: var(--bg-darkBlue);
+  background-color: var(--btn-bg);
+}
+
+.btn-contact:hover {
+  background-color: var(--btn-hover);
 }
 
 .service-content,
@@ -868,6 +1233,10 @@ footer {
     font-size: 10px;
   }
 
+  #basket{
+    top: 40%;
+  
+  }
 
   .hero-text h1 {
     font-size: 2rem;
@@ -994,7 +1363,6 @@ footer {
     padding: 0.5rem 1rem;
   }
 
-
   nav {
     flex-direction: column;
     gap: 50px;
@@ -1005,12 +1373,16 @@ footer {
     left: -100%;
     transition: left 0.5s ease;
     z-index: 1000;
-    background: linear-gradient(to right, #3d72b4, #525252);
+    /* background: linear-gradient(to right, #3d72b4, #525252); */
+    background: var(--bg-main);
     padding: 40px;
 
 
   }
 
+  #basket{
+    top: 40%;
+  }
   @keyframes slideDown {
     from {
       opacity: 0;
@@ -1021,6 +1393,36 @@ footer {
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+
+
+.auth-section {
+    justify-content: center; /* Center buttons so they don't hide on the right */
+    padding: 10px;
+    background: rgba(14, 87, 110, 0.9); /* Add a slight background to make it pop */
+    margin-bottom: 0;
+  }
+
+  /* Fix 2: Force the buttons to stay large enough for fingers */
+  .auth-section button {
+    font-size: 14px !important; /* Ignore the 8px html scaling */
+    padding: 8px 16px !important;
+    min-width: 80px;
+  }
+
+  /* Fix 3: Ensure the user profile text is visible */
+  #user-profile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-size: 14px;
+  }
+
+  #user-name {
+    font-size: 14px !important;
   }
 
   nav.toggle {
@@ -1038,9 +1440,7 @@ footer {
     font-weight: 700;
   }
 
-  nav a.active {
-    color: var(--bg-yellow);
-  }
+
 
   .main-header {
     font-size: 4rem;
@@ -1164,296 +1564,5 @@ footer {
   .contact-info {
     font-size: 1rem;
   }
-}
 
-/* api container */
-#container_api {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 40px;
-  padding: 30px;
-  background-color: var(--bg-medium);
-}
-
-/* 2. cards - api*/
-.destination-item {
-  background: var(--container-bg);
-  max-width: 400px;
-  border-radius: 10px;
-  box-shadow: 10px 4px 15px var(--shadow);
-  text-align: center;
-  padding: 10px;
-}
-
-/* 3.  api-card image */
-.destination-item img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-.destination-item h3 {
-  margin: 15px 0 5px 0;
-  color: var(--text-highlight);
-}
-
-.destination-item p {
-  height: 80px;
-  font-size: 14px;
-  line-height: 1.4;
-  margin-bottom: 10px;
-  color: var(--text-dark);
-}
-
-.destination-item h2 {
-  color: var(--nav-hover);
-}
-
-.destination-item button {
-  background-color: var(--btn-bg);
-  color: var(--btn-text);
-  border: none;
-  padding: 10px 25px;
-  border-radius: 50px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 15px;
-}
-
-.destination-item button:hover {
-  background-color: var(--btn-hover);
-}
-
-
-
-#basket {
-  background: white;
-  border: 2px solid #3498db;
-  font-size: 1.5rem;
-  padding: 10px;
-  border-radius: 10%;
-  cursor: pointer;
-  position: fixed;
-  top: 100px;
-  right: 20px;
-  z-index: 1001;
-}
-
-#basket:hover {
-  transform: scale(1.05);
-}
-
-#cart {
-  display: none;
-  position: fixed;
-  top: 160px;
-  right: 20px;
-  width: 300px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  padding: 20px;
-  z-index: 1000;
-  max-height: 400px;
-  overflow-y: auto;
-  border: 1px solid #eee;
-}
-
-/* cart appears when its active */
-#cart.active {
-  display: block;
-}
-
-/* 5. Styling individual items inside the cart */
-.cart-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-  margin-bottom: 10px;
-}
-
-.cart-item h3 {
-  font-size: 1rem;
-  margin: 0;
-  color: #333;
-}
-
-.destinations-page {
-  background-color: var(--bg-medium);
-}
-
-/* Full screen dark background */
-/* Update your CSS to look like this */
-.popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* This creates the dark, blurry background */
-    background: rgba(0, 0, 0, 0.5); 
-    backdrop-filter: blur(8px); 
-    -webkit-backdrop-filter: blur(8px);
-    padding: 30px;
-
-    display: none; /* Hidden by default */
-    justify-content: center;
-    align-items: center;
-    z-index: 2000; /* High z-index to stay on top */
-}
-
-.popup-content {
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    width: 90%;
-    max-width: 400px;
-    position: relative;
-    /* This shadow makes it "pop" */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); 
-    animation: scaleUp 0.3s ease-out;
-}
-
-/* Optional: Smooth entrance animation */
-@keyframes scaleUp {
-    from { transform: scale(0.8); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
-.close-btn {
-  position: absolute;
-  right: 15px;
-  top: 10px;
-  cursor: pointer;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-#signUpForm {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-#signUpForm input,
-#signUpForm select {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-#signUpForm button {
-  background: #007bff;
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 4px;
-  font-weight: bold;
-}
-
-#signUpForm button:hover {
-  background: #0056b3;
-}
-
-#pop-up-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1001;
-}
-
-.active{
-  display: block;
-}
-
-
-
-.auth-nav {
-  display: flex;
-  justify-content: flex-start;
-}
-
-#auth-links {
-  display: flex;
-  gap: 15px;
-}
-.auth-section button {
-  background-color: var(--btn-bg);
-  color: var(--btn-text);
-  border: none;
-  padding: 5px 10px;
-  border-radius: 999px;
-  font-weight: 600;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: 0.2s ease;
-}
-
-.auth-section button:hover {
-  background-color: var(--btn-hover);
-  transform: translateY(-1px);
-}
-
-.search-sort-row {
-  display: flex;
-  gap: 5px;
-}
-
-.search-sort-row input,
-.search-sort-row select {
-  padding: 3px 5px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-}
-
-
-.auth-section {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto 20px;
-  padding: 10px 20px;
-
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  background: transparent;
-}
-
-#auth-links {
-  display: flex;
-  gap: 10px;
-}
-.filter-section {
-  max-width: 900px;
-  margin: 10px auto ;
-  padding: 10px;
-  background: var(--container-bg);
-  border-radius: 14px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-}
-.search-sort-row {
-  display: flex;
-  gap: 15px;
-  justify-content: space-between;
-}
-
-.search-sort-row input {
-  flex: 1;
-}
-.search-sort-row input,
-.search-sort-row select {
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
 }

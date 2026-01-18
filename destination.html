@@ -47,13 +47,15 @@
 
   <main class="destinations-page">
     <section class="auth-section">
-  <nav class="auth-nav">
     <div id="auth-links">
       <button onclick="openSignUpPopup()">Create Account</button>
       <button onclick="openSignInPopup()">Sign In</button>
     </div>
-  </nav>
-</section>
+    <div id="user-profile" style="display: none;">
+      <span id="user-name"></span>
+      <button onclick="signOut()">Sign Out</button>
+    </div>
+  </section>
 
 <section class="filter-section">
   <div class="search-sort-row">
