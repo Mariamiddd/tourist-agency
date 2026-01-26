@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Odyssey Admin Panel</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .admin-container { max-width: 800px; margin: 50px auto; font-family: sans-serif; }
+        .hidden { display: none; }
+        .qa-card { background: #fff; border: 1px solid #ddd; padding: 15px; margin-bottom: 10px; border-radius: 8px; }
+        .login-box { background: #f4f4f4; padding: 30px; border-radius: 10px; text-align: center; }
+        input { display: block; width: 100%; margin: 10px 0; padding: 10px; }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+<div id="login-section" class="login-box">
+    <h2>Admin Login</h2>
+    <input type="email" id="email" placeholder="Email (admin@gmail.com)">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="handleLogin()" class="btn-base">Login</button>
+</div>
+
+        <div id="dashboard-section" class="hidden">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h1>Admin Dashboard</h1>
+                <button onclick="handleLogout()">Logout</button>
+            </div>
+            <hr>
+            <div id="admin-questions-list">Loading inquiries...</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

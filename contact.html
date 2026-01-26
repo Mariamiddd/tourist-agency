@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact - Odyssey Travel</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="images/favicon.webp" type="image/webp">
-  <link rel="icon" href="images/favicon.png" type="image/png">
+  <link rel="icon" href="https://res.cloudinary.com/dehx2iulz/image/upload/v1768840697/favicon_jfhvfj.webp" type="image/webp">
+
 </head>
 
 <body>
@@ -15,15 +15,14 @@
   <header>
     <a href="index.html">
       <h1>
-        <picture>
-          <source srcset="images/favicon.webp" type="image/webp">
-          <img src="images/favicon.png" alt="page icon" loading="lazy">
-        </picture>Odyssey Travel
+        <img src="https://res.cloudinary.com/dehx2iulz/image/upload/f_auto,q_auto,w_80/favicon_jfhvfj.webp"
+          alt="Odyssey Travel logo" width="40" height="40" loading="lazy">
+        Odyssey Travel
       </h1>
     </a>
     <nav>
       <a href="index.html">Home</a>
-      <a href="services.html">Services</a>
+      <a href="about.html">about</a>
       <a href="destination.html">Destinations</a>
       <a class="active" href="contact.html">Contact</a>
     </nav>
@@ -39,7 +38,7 @@
 
   <main class="contact">
     <section class="contact-form-section">
-      <form class="contact-form" action="#" method="POST">
+      <form class="contact-form" id="question-form" action="#" method="POST">
         <label for="name">Full Name</label>
         <input type="text" id="name" name="name" placeholder="Enter your full name" required>
 

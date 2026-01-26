@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Destinations - Odyssey Travel</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="images/favicon.webp" type="image/webp">
-  <link rel="icon" href="images/favicon.png" type="image/png">
+  <link rel="icon" href="https://res.cloudinary.com/dehx2iulz/image/upload/v1768840697/favicon_jfhvfj.webp"
+    type="image/webp">
 </head>
 
 <body>
@@ -15,15 +15,14 @@
 
     <a href="index.html">
       <h1>
-        <picture>
-          <source srcset="images/favicon.webp" type="image/webp">
-          <img src="images/favicon.png" alt="page icon" loading="lazy">
-        </picture>Odyssey Travel
+        <img src="https://res.cloudinary.com/dehx2iulz/image/upload/f_auto,q_auto,w_80/favicon_jfhvfj.webp"
+          alt="Odyssey Travel logo" width="40" height="40" loading="lazy">
+        Odyssey Travel
       </h1>
     </a>
     <nav>
       <a href="index.html">Home</a>
-      <a href="services.html">Services</a>
+      <a href="about.html">about</a>
       <a class="active" href="destination.html">Destinations</a>
       <a href="contact.html">Contact</a>
     </nav>
@@ -47,69 +46,69 @@
 
   <main class="destinations-page">
     <section class="auth-section">
-    <div id="auth-links">
-      <button onclick="openSignUpPopup()">Create Account</button>
-      <button onclick="openSignInPopup()">Sign In</button>
+      <div id="auth-links">
+        <button onclick="openSignUpPopup()">Create Account</button>
+        <button onclick="openSignInPopup()">Sign In</button>
+      </div>
+      <div id="user-profile" style="display: none;">
+        <span id="user-name"></span>
+        <button onclick="signOut()">Sign Out</button>
+      </div>
+    </section>
+
+    <section class="filter-section">
+      <div class="search-sort-row">
+        <input type="text" id="search-input" placeholder="Search destinations...">
+
+        <select id="sort-select">
+          <option value="">Sort by</option>
+          <option value="name-asc">Name (A-Z)</option>
+          <option value="name-desc">Name (Z-A)</option>
+          <option value="price-asc">Price (Low to High)</option>
+          <option value="price-desc">Price (High to Low)</option>
+        </select>
+      </div>
+    </section>
+
+
+    <div id="popupOverlay" class="popup-overlay" style="display: none">
+      <div class="popup-content">
+        <span id="closePopup" class="close-btn">&times;</span>
+        <form id="signUpForm">
+          <h2>Create Account</h2>
+          <input type="text" id="firstName" placeholder="First Name" required>
+          <input type="text" id="lastName" placeholder="Last Name" required>
+          <input type="number" id="age" placeholder="Age" min="1" required>
+          <input type="email" id="email" placeholder="Email" required>
+          <input type="password" id="password" placeholder="Password (min 8 chars)" required>
+
+          <input type="text" id="address" placeholder="Address" required>
+          <input type="text" id="phone" placeholder="Phone Number" required>
+          <input type="text" id="zipcode" placeholder="Zip Code" required>
+          <input type="url" id="avatar" placeholder="Avatar URL (Image link)" required>
+
+          <select id="gender">
+            <option value="MALE">Male</option>
+            <option value="FEMALE">Female</option>
+          </select>
+          <button type="submit">Sign Up</button>
+          <div id="message"></div>
+        </form>
+      </div>
     </div>
-    <div id="user-profile" style="display: none;">
-      <span id="user-name"></span>
-      <button onclick="signOut()">Sign Out</button>
-    </div>
-  </section>
-
-<section class="filter-section">
-  <div class="search-sort-row">
-    <input type="text" id="search-input" placeholder="Search destinations...">
-
-    <select id="sort-select">
-      <option value="">Sort by</option>
-      <option value="name-asc">Name (A-Z)</option>
-      <option value="name-desc">Name (Z-A)</option>
-      <option value="price-asc">Price (Low to High)</option>
-      <option value="price-desc">Price (High to Low)</option>
-    </select>
-  </div>
-</section>
-
-
-<div id="popupOverlay" class="popup-overlay"  style="display: none">
-  <div class="popup-content">
-            <span id="closePopup" class="close-btn">&times;</span>
-            <form id="signUpForm">
-                <h2 >Create Account</h2>
-                <input type="text" id="firstName" placeholder="First Name" required>
-                <input type="text" id="lastName" placeholder="Last Name" required>
-                <input type="number" id="age" placeholder="Age" min="1" required>
-                <input type="email" id="email" placeholder="Email" required>
-                <input type="password" id="password" placeholder="Password (min 8 chars)" required>
-                
-                <input type="text" id="address" placeholder="Address" required>
-                <input type="text" id="phone" placeholder="Phone Number" required>
-                <input type="text" id="zipcode" placeholder="Zip Code" required>
-                <input type="url" id="avatar" placeholder="Avatar URL (Image link)" required>
-
-                <select id="gender">
-                    <option value="MALE">Male</option>
-                    <option value="FEMALE">Female</option>
-                </select>
-                <button type="submit">Sign Up</button>
-                <div id="message"></div>
-            </form>
-            </div>
-       </div>
-<div id="signInOverlay" class="popup-overlay" class="pop-up-container" style="display: none">
-    <div class="popup-content">
+    <div id="signInOverlay" class="popup-overlay" class="pop-up-container" style="display: none">
+      <div class="popup-content">
         <span id="closeSignIn" class="close-btn">&times;</span>
         <form id="signInForm">
-            <h2>Welcome Back</h2>
-            <input type="email" id="signInEmail" placeholder="Email" required>
-            <input type="password" id="signInPassword" placeholder="Password" required>
-            <button type="submit">Login</button>
-            <div id="signInMessage"></div>
+          <h2>Welcome Back</h2>
+          <input type="email" id="signInEmail" placeholder="Email" required>
+          <input type="password" id="signInPassword" placeholder="Password" required>
+          <button type="submit">Login</button>
+          <div id="signInMessage"></div>
         </form>
+      </div>
     </div>
-</div>
-    
+
     <button id="basket">🛒 <span id="cart-count">0</span></button>
 
     <section id="cart">
@@ -118,42 +117,15 @@
         <p>Your cart is empty.</p>
       </div>
       <div>
-        Total: <span id="cart-total">$0.00</span>
+        <span id="cart-total">$0.00</span>
       </div>
       <button>Checkout</button>
     </section>
 
     <section class="container-box">
-      <section id="container_api">
+      <section id="container-api">
       </section>
 
-    </section>
-
-
-
-    <section class="reviews">
-      <h2>Traveler Experiences</h2>
-      <div class="review-grid">
-        <blockquote>
-          “Odyssey Travel planned our honeymoon to Santorini — every moment was magical! They even surprised us with a
-          private sunset dinner.”
-          <span>– Eleni & Marco</span>
-        </blockquote>
-        <blockquote>
-          “The guides in Athens were so passionate and knowledgeable. It felt like walking through history itself.”
-          <span>– Sophia, UK</span>
-        </blockquote>
-        <blockquote>
-          “We explored Lefkada’s hidden beaches and met incredible locals. I can’t wait to go back!”
-          <span>– Alex, USA</span>
-        </blockquote>
-      </div>
-    </section>
-
-    <section class="plan-journey">
-      <h2>Ready to Begin Your Odyssey?</h2>
-      <p>Let us design a tailor-made journey through Greece that you’ll remember forever.</p>
-      <a href="contact.html" class="btn-base">Start Planning</a>
     </section>
 
   </main>

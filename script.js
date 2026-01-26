@@ -1,18 +1,273 @@
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+const AUTH_API = 'https://api.everrest.educata.dev/auth/sign_in';
+const QUESTION_API = 'https://694d8a31ad0f8c8e6e20ea67.mockapi.io/question';
+
+
+
+window.onload = () => {
+    // If admin is already logged in, show dashboard and FETCH questions
+    if (sessionStorage.getItem('admin_token')) {
+        showDashboard(); 
+    }
+
+    // If we are on the About page, fetch the traveler Q&A immediately
+    const userQuestionsContainer = document.getElementById('questions-list');
+    if (userQuestionsContainer) {
+        loadUserQuestions();
+    }
+};
+
+async function handleLogin() {
+    const emailEl = document.getElementById('email');
+    const passwordEl = document.getElementById('password');
+
+    if (!emailEl || !passwordEl) return;
+
+    const email = emailEl.value;
+    const password = passwordEl.value;
+
+    try {
+        // 1. Send credentials to the real server
+        const response = await fetch(AUTH_API, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.json();
+
+        // 2. If the server says OK and gives us a token
+        if (response.ok && data.access_token) {
+            
+            // 3. Check if this specific user is the Admin
+            // In a real app, the API might send a "role: admin" field, 
+            // but checking the email is a fine solution for now!
+            if (email === "admin@gmail.com") {
+                sessionStorage.setItem('admin_token', data.access_token);
+                showDashboard();
+            } else {
+                alert("Login successful, but you do not have admin privileges.");
+            }
+        } else {
+            alert("Login failed: " + (data.message || "Invalid credentials"));
+        }
+    } catch (error) {
+        console.error("Connection error:", error);
+        alert("Server is offline. Please try again later.");
+    }
+}
+// user-side logic
+async function submitQuestion() {
+    const username = document.getElementById('user-name').value;
+    const question = document.getElementById('user-question').value;
+
+    if (!username || !question) {
+        alert("Please fill in both fields.");
+        return;
+    }
+
+    const newInquiry = {
+        username: username,
+        question: question,
+        adminAnswer: "", // Empty for now
+        status: "pending",
+        createdAt: new Date().toISOString()
+    };
+
+    try {
+        const res = await fetch(QUESTION_API, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newInquiry)
+        });
+
+        if (res.ok) {
+            alert("Question posted! Our experts will answer soon.");
+            document.getElementById('user-name').value = '';
+            document.getElementById('user-question').value = '';
+            loadUserQuestions(); // Refresh the list
+        }
+    } catch (err) {
+        console.error("Error posting question:", err);
+    }
+}
+// 2. Control View State
+function showDashboard() {
+    const token = sessionStorage.getItem('admin_token');
+    if (!token) return;
+
+    document.getElementById('login-section').classList.add('hidden');
+    document.getElementById('dashboard-section').classList.remove('hidden');
+    loadAdminQuestions();
+}
+async function loadUserQuestions() {
+    const res = await fetch(QUESTION_API);
+    const data = await res.json();
+    const container = document.getElementById('questions-list');
+
+    container.innerHTML = data.map(item => `
+        <div class="qa-card" style="border-left: 5px solid #000033; margin-bottom: 20px; padding: 10px;">
+            <p><strong>${item.username}:</strong> ${item.question}</p>
+            ${item.adminAnswer ? 
+                `<p style="margin-left: 20px; color: #555;">
+                    <i class="admin-label" style="font-weight: bold; color: #d4af37;">Admin Response:</i> ${item.adminAnswer}
+                 </p>` : 
+                `<p style="margin-left: 20px; color: #999; font-style: italic;">Awaiting response...</p>`
+            }
+        </div>
+    `).reverse().join('');
+}
+
+async function loadAdminQuestions() {
+    const container = document.getElementById('admin-questions-list');
+    if (!container) return; // Exit if we aren't on the admin page
+
+    container.innerHTML = "Loading inquiries..."; // Feedback for the user
+
+    try {
+        const res = await fetch(QUESTION_API);
+        const data = await res.json();
+        
+        if (data.length === 0) {
+            container.innerHTML = "<p>No questions found yet.</p>";
+            return;
+        }
+
+        container.innerHTML = data.map(item => `
+            <div class="qa-card">
+                <p><strong>User:</strong> ${item.username}</p>
+                <p><strong>Q:</strong> ${item.question}</p>
+                <div style="margin-top:10px;">
+                    <input type="text" id="reply-${item.id}" placeholder="Type answer..." value="${item.adminAnswer || ''}">
+                    <button onclick="submitAnswer('${item.id}')">Update</button>
+                    <button onclick="deleteQuestion('${item.id}')" style="background:red; color:white;">Delete</button>
+                </div>
+            </div>
+        `).reverse().join('');
+    } catch (err) {
+        container.innerHTML = "Error loading questions.";
+        console.error(err);
+    }
+}
+// Automatically load user questions if the container exists on the page
+if (document.getElementById('questions-list')) {
+    loadUserQuestions();
+}
+
+// 4. Update Answer (PUT)
+async function submitAnswer(id) {
+    const answer = document.getElementById(`reply-${id}`).value;
+    await fetch(`${QUESTION_API}/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ adminAnswer: answer, status: "answered" })
+    });
+    alert("Updated!");
+    loadAdminQuestions();
+}
+
+// 5. Delete Question (DELETE)
+async function deleteQuestion(id) {
+    if(confirm("Delete permanently?")) {
+        await fetch(`${QUESTION_API}/${id}`, { method: 'DELETE' });
+        loadAdminQuestions();
+    }
+}
+
+function handleLogout() {
+    sessionStorage.removeItem('admin_token');
+    location.reload();
+}
+
+// Check if already logged in on page load
+window.onload = () => {
+    if (sessionStorage.getItem('admin_token')) {
+        showDashboard();
+    }
+};
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// variables
+const hamburger = document.querySelector('.hamburger');
+const nav = document.querySelector('nav');
+const basketBtn = document.getElementById('basket');
+const cartContainer = document.getElementById('cart');
+const container = document.getElementById('container-api');
+const cartItems = document.getElementById('cart-items-container');
+
+
 // weather api
 const WEATHER_API_KEY = 'e9a4c85944754a6ce0fc0f81e842db69';
 // mockapi api
 const API_URL = "https://694d8a31ad0f8c8e6e20ea67.mockapi.io/API/1/Destinations";
 
-// ------------------------------------------------------------------   
-// რეგისტრაციის ფუნქცია (POST)
+
+
+hamburger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    nav.classList.toggle('toggle');
+});
+
+document.addEventListener('click', (e) => {
+    if (nav.classList.contains('toggle') && !nav.contains(e.target) && !hamburger.contains(e.target)) {
+        nav.classList.remove('toggle');
+    }
+});
+
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader-wrapper');
+    const token = localStorage.getItem('token');
+
+    updateAuthUI();
+    if (document.getElementById('signUpForm')) attachSignUpLogic();
+    if (document.getElementById('signInForm')) attachSignInLogic();
+
+    // it only fetches if we are on the Destinations page
+    if (container) {
+        fetchDestinations();
+    }
+
+    // thsi handles cart if cart elements exist on this page
+    if (cartItems) {
+        if (token) {
+            const savedCart = localStorage.getItem('cartItems');
+            if (savedCart && savedCart !== '<p>Your cart is empty.</p>') {
+                cartItems.innerHTML = savedCart;
+                updateCartTotals();
+            }
+        } else {
+            cartItems.innerHTML = '<p>Your cart is empty.</p>';
+            updateCartTotals();
+        }
+    }
+
+    // preloader hide
+    if (preloader) {
+        setTimeout(() => {
+            preloader.classList.add('fade-out');
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
+        }, 500);
+    }
+});
+
+
+
 function closeAllPopups() {
     const signupOverlay = document.getElementById('popupOverlay');
     const signinOverlay = document.getElementById('signInOverlay');
-    
+
     if (signupOverlay) signupOverlay.style.display = 'none';
     if (signinOverlay) signinOverlay.style.display = 'none';
 }
-// 1. Function to create and show the Sign Up Popup
+
+// Function to create and show the Sign Up Popup
 function openSignUpPopup() {
     closeAllPopups();
     const overlay = document.getElementById('popupOverlay');
@@ -31,7 +286,8 @@ function openSignUpPopup() {
     // Attach the Submit Logic
 }
 
-// 2. The Logic (modified from your code)
+
+// sign up logic
 function attachSignUpLogic() {
     const signUpForm = document.getElementById('signUpForm');
     signUpForm.addEventListener('submit', async (e) => {
@@ -93,7 +349,6 @@ function openSignInPopup() {
         if (e.target === signinoverlay) signinoverlay.style.display = 'none';
         // when sign in is clicked sing up disables
 
-
     };
 
 
@@ -146,6 +401,8 @@ function attachSignInLogic() {
         }
     });
 }
+
+
 async function updateAuthUI() {
     const token = localStorage.getItem('token');
     const authLinks = document.getElementById('auth-links');
@@ -191,6 +448,7 @@ async function updateAuthUI() {
         userNameSpan.innerText = "OFFLINE";
     }
 }
+
 function signOut() {
     // 1. Clear Data
     localStorage.removeItem('token');
@@ -203,97 +461,71 @@ function signOut() {
     if (cartCount) cartCount.innerText = '0';
     if (cartTotal) cartTotal.innerText = 'Total: $0.00';
 
+    // remove favourites
+    const favBtns = document.querySelectorAll('.fav-btn');
+    favBtns.forEach(btn => {
+        btn.classList.remove('active');
+        btn.setAttribute('data-featured', 'false');
+    });
+
+
     // 3. Reset Auth UI
     updateAuthUI();
 }
 
-// ------------------------------  DOM ELEMENTS  ----------------------------------
 
-
-// variables
-const hamburger = document.querySelector('.hamburger');
-const nav = document.querySelector('nav');
-const basketBtn = document.getElementById('basket');
-const cartContainer = document.getElementById('cart');
-const container = document.getElementById('container_api');
-const cartItems = document.getElementById('cart-items-container');
-
-
-hamburger.addEventListener('click', () => {
-    nav.classList.toggle('toggle');
-});
-
-window.addEventListener('load', () => {
-    const preloader = document.getElementById('preloader-wrapper');
-    const token = localStorage.getItem('token');
-
-    // Always run these - they handle their own internal safety checks
-    updateAuthUI();
-    if (document.getElementById('signUpForm')) attachSignUpLogic();
-    if (document.getElementById('signInForm')) attachSignInLogic();
-
-    // ONLY fetch if we are on the Destinations page
-    if (container) {
-        fetchDestinations();
-    }
-
-    // ONLY handle cart if cart elements exist on this page
-    if (cartItems) {
-        if (token) {
-            const savedCart = localStorage.getItem('cartItems');
-            if (savedCart && savedCart !== '<p>Your cart is empty.</p>') {
-                cartItems.innerHTML = savedCart;
-                updateCartTotals();
-            }
-        } else {
-            cartItems.innerHTML = '<p>Your cart is empty.</p>';
-            updateCartTotals();
-        }
-    }
-
-    // Hide preloader last
-    if (preloader) {
-        setTimeout(() => {
-            preloader.classList.add('fade-out');
-            setTimeout(() => {
-                preloader.style.display = 'none';
-            }, 500);
-        }, 500);
-    }
-});
-// render destinations function. 
-// !!!!!!ჭირდება გამარტივება ფუნქციას და დაყოოფა ნაწილებად!!!!
 function renderDestinations(data) {
     container.innerHTML = '';
     data.forEach(dest => {
         const weatherId = `weather-${dest.city.replace(/\s+/g, '-')}`;
 
+        // Create the list of included items safely
+        // We check if included exists and is an array before mapping
+        const includedItems = Array.isArray(dest.included)
+            ? dest.included.map(item => `<li>${item}</li>`).join('')
+            : '<li>Standard travel package</li>';
+
         const destDiv = document.createElement('div');
         destDiv.className = 'destination-item';
+
         destDiv.innerHTML = `
-            <div class="fav-container" style="text-align: right; cursor: pointer;">
-<span class="fav-btn ${dest.isFeatured ? 'active' : ''}" 
+    <div class="fav-container" style="position: absolute; right: 10px; top: 10px;">
+        </div>
+
+    <img src="${dest.image}" alt="${dest.city}" class="dest-img" loading="lazy">
+    
+    <div class="card-body">
+        <h3>${dest.city}</h3>
+        
+        <div class="weather-container">
+            <div id="${weatherId}"></div>
+        </div>
+        <span class="fav-btn ${dest.isFeatured ? 'active' : ''}" 
       data-id="${dest.id}" 
       data-featured="${dest.isFeatured}">
   <svg class="heart-icon" viewBox="0 0 24 24">
     <path d="M12 21s-6.716-5.402-9.33-8.017C.6 10.91.384 7.733 2.322 5.804 4.26 3.875 7.3 3.875 9.238 5.804L12 8.566l2.762-2.762c1.938-1.929 4.978-1.929 6.916 0 1.938 1.929 1.722 5.106-.348 7.179C18.716 15.598 12 21 12 21z"/>
   </svg>
 </span>
-            </div>
-            <h3>${dest.city}</h3>
-            <div class="weather-container">
-                <div id="${weatherId}"></div>
-            </div>
-            <p>${dest.description}</p>
-            <span>Duration: ${dest.days} days</span>
-            <img src="${dest.image}" alt="${dest.city}" width="300">
-            <h2>Price: $${dest.price}</h2>
-            <button class="add-btn">Add to Cart</button>
-        `;
+
+        <p class="duration"><strong>${dest.days}</strong></p>
+
+        <div class="included-box">
+            <ul>${includedItems}</ul>
+        </div>
+        
+        <div class="card-footer">
+            <h2 class="price">$${dest.price}</h2>
+            <button class="add-btn">Book Now</button>
+        </div>
+    </div>
+`;
+
         container.appendChild(destDiv);
         getWeather(dest.city, weatherId);
     });
 }
+
 
 // using put method to add des to favorites
 async function updateFavoriteQuietly(id, newStatus) {
@@ -333,73 +565,93 @@ async function fetchDestinations() {
 basketBtn.addEventListener('click', () => {
     cartContainer.classList.toggle('active');
 });
-// add to cart and to favourites
-container.addEventListener('click', function (event) {
 
-    // 1. LOGIC FOR FAVORITES (Check this first)
-    const favBtn = event.target.closest('.fav-btn');
+// Check if user is logged in pop up if its not
+function checkAuth() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        openSignInPopup();
+        return false;
+    }
+    return true;
+}
+
+
+// Favorite Logic
+
+function handleFavoriteToggle(favBtn) {
+    if (!checkAuth()) return;
+
+    const id = favBtn.getAttribute('data-id');
+    const currentStatus = favBtn.getAttribute('data-featured') === 'true';
+    const newStatus = !currentStatus;
+
+    favBtn.classList.toggle('active', newStatus);
+    favBtn.setAttribute('data-featured', newStatus);
+
+    updateFavoriteQuietly(id, newStatus);
+}
+
+// cart logic adding to xard
+function handleAddToCart(button) {
+    if (!checkAuth()) return;
+
+    //findinf parent card
+    const mainCard = button.closest('.destination-item');
+
+    // find the data inside that specific card
+    const title = mainCard.querySelector('h3').textContent.trim();
+    const priceText = mainCard.querySelector('.price').textContent;
+    const price = parseFloat(priceText.replace(/[^0-9.]/g, ''));
+
+    const cartBox = document.getElementById('cart-items-container');
+
+    // Look for existing item
+    const currentItems = Array.from(cartBox.querySelectorAll('.cart-item'));
+    const existingItem = currentItems.find(row => row.querySelector('h3').textContent === title);
+
+    if (existingItem) {
+        existingItem.querySelector('.plus').click();
+    } else {
+        if (cartBox.innerText.includes('empty')) cartBox.innerHTML = '';
+
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+            <div>
+                <h3>${title}</h3>
+                <div class="qty-controls">
+                    <button class="qty-btn minus">-</button>
+                    <span class="qty">1</span>
+                    <button class="qty-btn plus">+</button>
+                    <small>x Person</small>
+                </div>
+            </div>
+            <h2  data-price="${price}">$${price}</h2>
+            <span class="remove-item">&times;</span>
+        `;
+
+        cartBox.appendChild(div);
+        updateCartTotals();
+        document.getElementById('cart').classList.add('active');
+    }
+}
+
+// container event listener
+container.addEventListener('click', (event) => {
+    const target = event.target;
+
+    // fav btn
+    const favBtn = target.closest('.fav-btn');
     if (favBtn) {
-        const token = localStorage.getItem('token');
-        if (!token) {
-            openSignInPopup();
-            return; // Stop here if not logged in
-        }
-
-        const id = favBtn.getAttribute('data-id');
-        const currentStatus = favBtn.getAttribute('data-featured') === 'true';
-        const newStatus = !currentStatus;
-
-        favBtn.classList.toggle('active', newStatus);
-        favBtn.setAttribute('data-featured', newStatus);
-
-        updateFavoriteQuietly(id, newStatus);
-        return; // Exit after handling favorite
+        handleFavoriteToggle(favBtn);
+        return;
     }
 
-    // 2. LOGIC FOR ADD TO CART (Separate IF block)
-    if (event.target.tagName === 'BUTTON' && event.target.classList.contains('add-btn')) {
-        const token = localStorage.getItem('token');
-        if (!token) {
-            openSignInPopup();
-            return;
-        }
-
-        const button = event.target;
-        const item = button.parentElement;
-        const title = item.querySelector('h3').textContent.trim();
-        const priceText = item.querySelector('h2').textContent;
-        const price = parseFloat(priceText.replace(/[^0-9.]/g, ''));
-        const cartBox = document.getElementById('cart-items-container');
-
-        let existingItem = null;
-        const currentItems = cartBox.querySelectorAll('.cart-item');
-        currentItems.forEach(row => {
-            if (row.querySelector('h3').textContent === title) existingItem = row;
-        });
-
-        if (existingItem) {
-            existingItem.querySelector('.plus').click();
-        } else {
-            if (cartBox.innerText.includes('empty')) cartBox.innerHTML = '';
-            const div = document.createElement('div');
-            div.className = 'cart-item';
-            div.innerHTML = `
-                <div>
-                    <h3>${title}</h3>
-                    <div class="qty-controls">
-                        <button class="qty-btn minus">-</button>
-                        <span class="qty">1</span>
-                        <button class="qty-btn plus">+</button>
-                        <small>x Person</small>
-                    </div>
-                </div>
-                <h2 data-price="${price}">$${price}</h2>
-                <span class="remove-item">&times;</span>
-            `;
-            cartBox.appendChild(div);
-            updateCartTotals();
-            document.getElementById('cart').classList.add('active');
-        }
+    // add card
+    if (target.classList.contains('add-btn')) {
+        handleAddToCart(target);
+        return;
     }
 });
 
@@ -424,7 +676,6 @@ cartItems.addEventListener('click', function (event) {
         }
 
     }
-
 
     // update the quantity 
     qtySpan.innerText = currentQty;
@@ -458,7 +709,6 @@ updateCartTotals();
 
 
 // 4. remove item from cart
-
 document.getElementById('cart-items-container').addEventListener('click', function (event) {
     const target = event.target;
     if (!target.classList.contains('remove-item')) return;
@@ -496,7 +746,6 @@ async function getWeather(city, elementId) {
 }
 
 // closing cart when clicked outside
-
 document.addEventListener('click', function (event) {
     const isClickInside = cartContainer.contains(event.target) || basketBtn.contains(event.target);
     if (!isClickInside) {
@@ -506,7 +755,6 @@ document.addEventListener('click', function (event) {
 });
 
 // save cart to local storage (optional enhancement)
-
 window.addEventListener('beforeunload', () => {
     localStorage.setItem('cartItems', cartItems.innerHTML);
 });
@@ -528,3 +776,34 @@ if (searchInput) {
         });
     });
 }
+
+// sorting based on price name etc
+const sortSelect = document.getElementById('sort-select');
+sortSelect.addEventListener('change', function () {
+    const sortValue = sortSelect.value;
+    const destinationItems = Array.from(container.getElementsByClassName('destination-item'));
+
+    destinationItems.sort((a, b) => {
+        const nameA = a.querySelector('h3').innerText.toLowerCase();
+        const nameB = b.querySelector('h3').innerText.toLowerCase();
+        const priceA = parseFloat(a.querySelector('.price').innerText.replace(/[^0-9.]/g, ''));
+        const priceB = parseFloat(b.querySelector('.price').innerText.replace(/[^0-9.]/g, ''));
+
+        if (sortValue === 'name-asc') {
+            return nameA.localeCompare(nameB);
+        } else if (sortValue === 'name-desc') {
+            return nameB.localeCompare(nameA);
+        } else if (sortValue === 'price-asc') {
+            return priceA - priceB;
+        } else if (sortValue === 'price-desc') {
+            return priceB - priceA;
+        }
+        return 0;
+    });
+
+    // Clear existing items and append sorted ones
+    container.innerHTML = '';
+    destinationItems.forEach(item => container.appendChild(item));
+});
+
+
