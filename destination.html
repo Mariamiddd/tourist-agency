@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="https://res.cloudinary.com/dehx2iulz/image/upload/v1768840697/favicon_jfhvfj.webp"
     type="image/webp">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 
 <body>
@@ -22,8 +24,8 @@
     </a>
     <nav>
       <a href="index.html">Home</a>
-      <a href="about.html">about</a>
       <a class="active" href="destination.html">Destinations</a>
+      <a href="expert-advice.html">Ask an Expert</a>
       <a href="contact.html">Contact</a>
     </nav>
     <div class="hamburger">&#9776</div>
@@ -111,16 +113,24 @@
 
     <button id="basket">🛒 <span id="cart-count">0</span></button>
 
-    <section id="cart">
-      <h4 class="cart-title">Your Trip</h4>
-      <div id="cart-items-container">
+<section id="cart">
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--nav-hover); padding-bottom: 10px; margin-bottom: 20px;">
+        <h4 class="cart-title" style="margin: 0; border: none;">Your Trip</h4>
+        <span id="close-cart" style="cursor: pointer; font-size: 2.5rem; color: var(--nav-active); line-height: 1;">&times;</span>
+    </div>
+
+    <div id="cart-items-container">
         <p>Your cart is empty.</p>
-      </div>
-      <div>
-        <span id="cart-total">$0.00</span>
-      </div>
-      <button>Checkout</button>
-    </section>
+    </div>
+
+    <div style="margin-top: auto; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <strong style="color: var(--text-darkerererer);">Total:</strong>
+            <span id="cart-total" style="font-weight: bold; font-size: 1.5rem; color: var(--maroon);">$0.00</span>
+        </div>
+        <button id="checkout-btn">Checkout</button>
+    </div>
+</section>
 
     <section class="container-box">
       <section id="container-api">
@@ -128,6 +138,11 @@
 
     </section>
 
+    <section id="map-section" style="max-width: 1200px; margin: 20px auto; padding: 0 30px;">
+      <div id="map"
+        style="height: 400px; width: 100%; border-radius: 15px; border: 5px solid var(--container-bg); box-shadow: var(--shadow);">
+      </div>
+    </section>
   </main>
 
   <footer>

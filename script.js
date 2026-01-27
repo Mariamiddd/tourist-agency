@@ -1,11 +1,13 @@
-
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////
 const AUTH_API = 'https://api.everrest.educata.dev/auth/sign_in';
 const QUESTION_API = 'https://694d8a31ad0f8c8e6e20ea67.mockapi.io/question';
 
-
+const cityCoordinates = {
+    "athens": [37.9838, 23.7275],
+    "santorini": [36.3932, 25.4615],
+    "thessaloniki": [40.6401, 22.9444],
+    "lefkada": [38.8333, 20.7022],
+    "mykonos": [37.4467, 25.3289]
+};
 
 window.onload = () => {
     // If admin is already logged in, show dashboard and FETCH questions
@@ -222,6 +224,7 @@ document.addEventListener('click', (e) => {
 window.addEventListener('load', () => {
     const preloader = document.getElementById('preloader-wrapper');
     const token = localStorage.getItem('token');
+    
 
     updateAuthUI();
     if (document.getElementById('signUpForm')) attachSignUpLogic();
@@ -230,6 +233,7 @@ window.addEventListener('load', () => {
     // it only fetches if we are on the Destinations page
     if (container) {
         fetchDestinations();
+        initMap();
     }
 
     // thsi handles cart if cart elements exist on this page
@@ -549,15 +553,26 @@ async function updateFavoriteQuietly(id, newStatus) {
 // fetch destinations from api
 async function fetchDestinations() {
     try {
-
         const response = await fetch(API_URL);
         const destinations = await response.json();
         renderDestinations(destinations);
-        console.log(destinations);
+
+        // Add markers to the map for each destination
+        destinations.forEach(dest => {
+            const cityKey = dest.city.toLowerCase();
+            const coords = cityCoordinates[cityKey];
+
+            if (coords) {
+                const marker = L.marker(coords).addTo(myMap);
+                marker.bindPopup(`<b>${dest.city}</b><br>$${dest.price}`);
+                
+                // Save marker to our global array for searching
+                mapMarkers.push({ name: cityKey, layer: marker, coords: coords });
+            }
+        });
     } catch (error) {
         console.error('Error fetching destinations:', error);
     }
-
 }
 
 
@@ -747,8 +762,13 @@ async function getWeather(city, elementId) {
 
 // closing cart when clicked outside
 document.addEventListener('click', function (event) {
-    const isClickInside = cartContainer.contains(event.target) || basketBtn.contains(event.target);
-    if (!isClickInside) {
+const isClickInside = cartContainer.contains(event.target) || basketBtn.contains(event.target);
+    
+    // Check if the user clicked the "remove" X button
+    const isRemoveClick = event.target.classList.contains('remove-item');
+
+    // Only hide the cart if the click was outside AND NOT on a remove button
+    if (!isClickInside && !isRemoveClick) {
         cartContainer.classList.remove('active');
     }
 
@@ -806,4 +826,94 @@ sortSelect.addEventListener('change', function () {
     destinationItems.forEach(item => container.appendChild(item));
 });
 
+// Add this to your window.onload or with your other event listeners
+const checkoutBtn = document.getElementById('checkout-btn');
+if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', handleCheckout);
+}
 
+function handleCheckout() {
+    const cartBox = document.getElementById('cart-items-container');
+    
+    // 1. Check if the cart is empty
+    if (cartBox.children.length === 0 || cartBox.innerText.includes('empty')) {
+        alert("Your cart is empty! Choose a destination first.");
+        return;
+    }
+
+    // 2. Mock a processing delay (Looks more professional)
+    const originalText = checkoutBtn.innerText;
+    checkoutBtn.innerText = "Processing Odyssey...";
+    checkoutBtn.disabled = true;
+
+    setTimeout(() => {
+        // 3. Success Feedback
+        alert("Pack your bags! Your Greek Odyssey has been booked successfully.");
+
+        // 4. Clear the Cart Data
+        cartBox.innerHTML = '<p>Your cart is empty.</p>';
+        localStorage.removeItem('cartItems'); // Clear saved storage
+        
+        // 5. Update UI
+        updateCartTotals();
+        document.getElementById('cart').classList.remove('active');
+        
+        // 6. Reset Button
+        checkoutBtn.innerText = originalText;
+        checkoutBtn.disabled = false;
+    }, 1500);
+}
+
+let mapMarkers = []; // Global array to store markers
+let myMap;
+
+function initMap() {
+    const greeceCenter = [38.5, 23.5]; 
+    myMap = L.map('map').setView(greeceCenter, 6);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap'
+    }).addTo(myMap);
+}
+
+// Update your render function to create markers with names
+function addMarkerToMap(city, lat, lng) {
+    const marker = L.marker([lat, lng]).addTo(myMap);
+    marker.bindPopup(`<b>${city}</b>`);
+    
+    // Store the city name and marker object together
+    mapMarkers.push({ name: city.toLowerCase(), layer: marker });
+}
+
+searchInput.addEventListener('input', function () {
+    const filter = searchInput.value.toLowerCase();
+    
+    // Your existing card filtering logic
+    const destinationItems = container.getElementsByClassName('destination-item');
+    Array.from(destinationItems).forEach(item => {
+        const city = item.querySelector('h3').innerText.toLowerCase();
+        item.style.display = city.includes(filter) ? '' : 'none';
+    });
+
+    // NEW: Map Search Logic
+    const matchedMarker = mapMarkers.find(m => m.name.includes(filter));
+    
+    if (matchedMarker && filter.length > 2) {
+        // "Fly" to the city and open its popup
+        myMap.flyTo(matchedMarker.layer.getLatLng(), 6);
+        matchedMarker.layer.openPopup();
+    } else if (filter.length === 0) {
+        // Reset view to all of Greece if search is cleared
+        myMap.setView([39.0742, 21.8243], 6);
+    }
+});
+
+
+// Inside your window.onload or with your other event listeners
+const closeCartBtn = document.getElementById('close-cart');
+
+if (closeCartBtn) {
+    closeCartBtn.addEventListener('click', () => {
+        document.getElementById('cart').classList.remove('active');
+    });
+}
