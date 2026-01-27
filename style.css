@@ -1405,10 +1405,6 @@ hr {
     font-size: 8px;
   }
 
-  body {
-    margin-bottom: 100px;
-  }
-
   nav {
     flex-direction: column;
     gap: 40px;
