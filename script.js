@@ -319,7 +319,7 @@ async function loadUserQuestions() {
         const data = await res.json();
         container.innerHTML = data.map(item => `
             <div class="qa-card" style="border-left: 5px solid #000033; margin-bottom: 20px; padding: 10px;">
-                <p><strong>${item.username}:</strong> ${item.question}</p>
+                <p><strong class="username">${item.username}:</strong> ${item.question}</p>
                 ${item.adminAnswer ?
                 `<p style="margin-left: 20px; color: #555;">
                     <i class="admin-label" style="font-weight: bold; color: #d4af37;">Admin:</i> ${item.adminAnswer}
